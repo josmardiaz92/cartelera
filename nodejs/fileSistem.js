@@ -12,14 +12,20 @@ const fs=require('fs');
 
 //TODO LEER ARCHIVO
 
-/* fs.readFile('prueba01.txt','utf-8',(error,data)=>{  //*1er parametro nombre del nuevo archivo, el segundo parametro es para que no me lance un buffer, sino que el archivo sea legible (es opciona) y el 3do parametro sera un callback por si hay un error y la data que me va a retornar
-    if(!error)
-    {
-        console.log(data);
-    }else{
-        console.log(`Error: ${error}`);
-    }
-}); */
+function newFunction() {
+    let data=fs.readFile('prueba.txt','utf-8',(error,data)=>{  //*1er parametro nombre del nuevo archivo, el segundo parametro es para que no me lance un buffer, sino que el archivo sea legible (es opciona) y el 3do parametro sera un callback por si hay un error y la data que me va a retornar
+        if(!error)
+        {
+            console.log(data);
+        }else{
+            console.log(`Error: ${error}`);
+        }
+        return data;
+    });
+    return data;
+}
+
+newFunction();
 
 //TODO RENOMBRAR ARCHIVO
 
@@ -55,8 +61,8 @@ const fs=require('fs');
 
 //TODO LEER LO QUE HAY DENTRO DE UNA CARPETA
 
-fs.readdir('./',(error,archivos)=>{ 
+/* fs.readdir('./',(error,archivos)=>{ 
     archivos.forEach(archivo=>{
         console.log(archivo);
     });
-});
+}); */
