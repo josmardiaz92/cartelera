@@ -1,0 +1,12 @@
+{
+  "name": "tu-proyecto",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node js/recogerTexto.mjs"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "node-fetch": "^3.3.1"
+  }
+}
