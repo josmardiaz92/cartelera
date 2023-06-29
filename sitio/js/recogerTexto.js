@@ -23,7 +23,7 @@ Promise.all(promesasLectura)
     datos.forEach(dato=>{
         if(dato!=='')
         {
-            console.log(dato);
+            document.write(dato);
         }
         else
         {
