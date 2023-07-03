@@ -77,20 +77,19 @@
                         </div>
                     </div>
                     <div class="col-5 HSA bordeRedondeado mt-1">
-                        <div class="row d-flex justify-content-evenly p-1">
-                            <div class="col-7 d-flex justify-content-center fs-5 text-center text-uppercase text-light">
-                                paciente
-                            </div>
-                            <div class="col-4 d-flex justify-content-center fs-5 text-center text-uppercase text-light">
-                                en
-                            </div>
-                        </div>
-                        <div class="row d-flex justify-content-evenly mt-2">
-                            <div class="col-7 d-flex justify-content-center fs-5 text-center text-uppercase text-light" id="lista-turnos-pacientes-general">
-                                <span>josmar alejandro diaz</span>
-                            </div>
-                            <div class="col-5 d-flex justify-content-center fs-5 text-center text-uppercase text-light" id="lista-turnos-area-general">
-                                <span>consultorio 20</span>
+                        <div class="row mt-2">
+                            <div class="table-responsive">
+                                <table class="table table-striped text-capitalize">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-light border-0 text-center fs-3">paciente</th>
+                                            <th class="text-light border-0 text-center fs-3">en</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabla-turnos">
+                                    </tbody>
+                                </table>
+                                <input type="hidden" name="turnos" id="turnos" value="">
                             </div>
                         </div>
                     </div>
@@ -110,5 +109,6 @@
 
     <script src="../js/js-bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../js/cambioClases.js"></script>
+    <script src="../js/agregarTurnos.js"></script>
 </body>
 </html>
