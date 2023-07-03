@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="row mt-4 d-flex justify-content-center">
-            <div class="col-sm-11 col-md-8 col-lg-7 bordeRedondeado turnoActual transicion-difuminado ver" id="turnoActual">
+            <div class="col-sm-11 col-md-8 col-lg-7 bordeRedondeado turnoActual transicion-difuminado no-ver d-none" id="turnoActual">
                 <div class="row encabezado d-flex justify-content-center fs-3 text-center text-uppercase text-light">
                     <div class="col-5">
                         paciente
@@ -27,16 +27,16 @@
                     </div>
                 </div>
                 <hr class="mt-0 mx-3">
-                <div class="row cuerpo d-flex mt-5 justify-content-center fs-3 text-center text-capitalize text-light">
+                <div class="row cuerpo d-flex my-4 justify-content-center fs-3 text-center text-capitalize text-light">
                     <div class="col-5">
-                        <span id="turno-paciente-general">josmar diaz</span>
+                        <span id="turno-paciente-general"></span>
                     </div>
                     <div class="col-5">
-                        <span id="turno-area-general">consultorio 1</span>
+                        <span id="turno-area-general"></span>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8 col-md-7 col-lg-3 bordeRedondeado entreTurnos transicion-difuminado no-ver d-none" id="entreTurnos">
+            <div class="col-sm-8 col-md-7 col-lg-3 bordeRedondeado entreTurnos transicion-difuminado ver" id="entreTurnos">
                 <div class="row d-flex justify-content-center">
                     <div class="col-10 contenedor-carrusel d-flex justify-content-center">
                         <div id="carruselEntreTurnos" class="carousel slide" data-bs-ride="carousel">
@@ -108,7 +108,6 @@
     
 
     <script src="../js/js-bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="../js/cambioClases.js"></script>
     <script src="../js/agregarTurnos.js"></script>
 </body>
 </html>
