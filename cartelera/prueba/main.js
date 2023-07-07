@@ -11,21 +11,17 @@ $(document).ready(function() {
 
             const turnoActual=document.getElementById('turno-paciente-general').textContent=data[0].id;
             const lugarActual=document.getElementById('turno-area-general').textContent=data[0].idCaja;
-            data.forEach(function() {
+            data.forEach(function(element, index) {
                 if (c < 5) {
                     
                     if (c === 0) {
-                        const turno1=document.getElementById('primerFilaTurno').textContent=data[0].id;
-                        const en1=document.getElementById('primerFilaEn').textContent=data[0].idCaja;
+                        const turno1=document.getElementById('primerFilaTurno').textContent=element.id;
+                        const en1=document.getElementById('primerFilaEn').textContent=element.idCaja;
                     } else {
-                        const turno2=document.getElementById('turno2').textContent=data[1].id;
-                        const en2=document.getElementById('en2').textContent=data[1].idCaja;
-                        const turno3=document.getElementById('turno3').textContent=data[2].id;
-                        const en3=document.getElementById('en3').textContent=data[2].idCaja;
-                        const turno4=document.getElementById('turno4').textContent=data[3].id;
-                        const en4=document.getElementById('en4').textContent=data[3].idCaja;
-                        const turno5=document.getElementById('turno5').textContent=data[4].id;
-                        const en5=document.getElementById('en5').textContent=data[4].idCaja;
+                        const turnoElement = document.getElementById(`turno${index + 1}`);
+                        const enElement = document.getElementById(`en${index + 1}`);
+                        turnoElement.textContent = element.id;
+                        enElement.textContent = element.idCaja;
                     }
                 }
             c++;
