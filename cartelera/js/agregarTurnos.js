@@ -16,6 +16,7 @@ if (listaTurnos.length !== 0) {
     let c = 0;
     let data = '';
 
+    
     listaTurnos.forEach(function(row) {
         if (c < 5) {
             data += row.paciente + '|' + row.en + '|tr|';

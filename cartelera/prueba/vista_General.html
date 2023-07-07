@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="row mt-4 d-flex justify-content-center">
-            <div class="col-sm-11 col-md-8 col-lg-7 bordeRedondeado turnoActual transicion-difuminado no-ver d-none" id="turnoActual">
+            <div class="col-sm-11 col-md-8 col-lg-7 bordeRedondeado turnoActual transicion-difuminado" id="turnoActual">
                 <div class="row encabezado d-flex justify-content-center fs-3 text-center text-uppercase text-light">
                     <div class="col-5">
                         paciente
@@ -88,6 +88,46 @@
                                         </tr>
                                     </thead>
                                     <tbody id="tabla-turnos">
+                                        <tr>
+                                            <td class='text-center text-light border-0 fs-3'>
+                                                <span class='primer-fila' id="primerFilaTurno"></span>
+                                            </td>
+                                            <td class='en text-center text-light border-0 fs-3'>
+                                                <span class='primer-fila' id="primerFilaEn"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class='text-center text-light border-0 fs-3'>
+                                                <span id="turno2"></span>
+                                            </td>
+                                            <td class='en text-center text-light border-0 fs-3'>
+                                                <span id="en2"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class='text-center text-light border-0 fs-3'>
+                                                <span id="turno3"></span>
+                                            </td>
+                                            <td class='en text-center text-light border-0 fs-3'>
+                                                <span id="en3"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class='text-center text-light border-0 fs-3'>
+                                                <span id="turno4"></span>
+                                            </td>
+                                            <td class='en text-center text-light border-0 fs-3'>
+                                                <span id="en4"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class='text-center text-light border-0 fs-3'>
+                                                <span id="turno5"></span>
+                                            </td>
+                                            <td class='en text-center text-light border-0 fs-3'>
+                                                <span id="en5"></span>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <input type="hidden" name="turnos" id="turnos" value="">
@@ -109,6 +149,6 @@
     
 
     <script src="../js/js-bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="../js/agregarTurnos.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
