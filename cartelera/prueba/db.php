@@ -1,7 +1,7 @@
 <?php
 // Datos de conexión a la base de datos
 $host = 'localhost';
-$dbname = 'turnero';
+$dbname = 'cartelera_hsa';
 $username = 'root';
 $password = '';
 
@@ -18,7 +18,7 @@ try {
 }
 
 // Consulta a la base de datos
-$query = 'select id, turno, idCaja from atencion order by turno desc limit 5';
+$query = 'select pac_ate,are_ate,lug_ate from atencion WHERE DATE(fec_ate) = CURDATE() order by cod_ate desc limit 5';
 $stmt = $pdo->query($query);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

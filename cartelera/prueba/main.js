@@ -7,14 +7,14 @@ $(document).ready(function() {
             url: 'db.php',
             dataType: 'json',
             success: function(data) {
-                const turnoActual=document.getElementById('turno-paciente-general').textContent=data[0].id;
-                const lugarActual=document.getElementById('turno-area-general').textContent=data[0].idCaja;
+                const turnoActual=document.getElementById('turno-paciente-general').textContent=data[0].pac_ate;
+                const lugarActual=document.getElementById('turno-area-general').textContent=data[0].lug_ate;
                 
                 // Comparar el valor actual con el valor anterior
-                if (data[0].id !== valorAnterior) {
+                if (data[0].pac_ate !== valorAnterior) {
                     const turno=document.getElementById('turnoActual');
                     const entreturno=document.getElementById('entreTurnos');
-                    const textoaVoz=`Paciente ${data[0].id}, será atendido en el consultorio número ${data[0].idCaja}`;
+                    const textoaVoz=`Paciente ${data[0].pac_ate}, será atendido en el consultorio número ${data[0].lug_ate}`;
                     let i=0;
                     for(i=0;i<3;i++) {
                         aparecer(turno, entreturno);
@@ -30,19 +30,19 @@ $(document).ready(function() {
                 }
 
                 // Almacenar el valor actual para la siguiente comparación
-                valorAnterior = data[0].id;
+                valorAnterior = data[0].pac_ate;
 
                 data.forEach(function(element, index) {
                     if (c < 5) {
                         
                         if (c === 0) {
-                            const turno1=document.getElementById('primerFilaTurno').textContent=element.id;
-                            const en1=document.getElementById('primerFilaEn').textContent=element.idCaja;
+                            const turno1=document.getElementById('primerFilaTurno').textContent=element.pac_ate;
+                            const en1=document.getElementById('primerFilaEn').textContent=element.lug_ate;
                         } else {
                             const turnoElement = document.getElementById(`turno${index + 1}`);
                             const enElement = document.getElementById(`en${index + 1}`);
-                            turnoElement.textContent = element.id;
-                            enElement.textContent = element.idCaja;
+                            turnoElement.textContent = element.pac_ate;
+                            enElement.textContent = element.lug_ate;
                         }
                     }
                     c++;
