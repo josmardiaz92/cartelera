@@ -13,7 +13,7 @@ $(document).ready(function() {
                 if (data[0].pac_ate !== valorAnterior) {
                     const turno = document.getElementById('turnoActual');
                     const entreturno = document.getElementById('entreTurnos');
-                    const textoaVoz = `Paciente ${data[0].pac_ate}, será atendido en el consultorio número ${data[0].lug_ate}`;
+                    const textoaVoz = `Paciente ${data[0].pac_ate}, será atendido en ${data[0].lug_ate}`;
                     let i = 0;
                     for (i = 0; i < 3; i++) {
                         aparecer(turno, entreturno);
