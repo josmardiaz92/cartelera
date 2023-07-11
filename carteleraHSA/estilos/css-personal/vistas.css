@@ -1,3 +1,12 @@
+@font-face{
+	font-family: 'personal';
+	src: url(../fuentes/Montserrat-VariableFont_wght.ttf);
+}
+
+*{
+	font-family: 'personal';
+}
+
 body {
     background-color: rgb(0, 0, 0);
 }
