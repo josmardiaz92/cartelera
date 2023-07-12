@@ -1,6 +1,7 @@
 let valorAnterior='';
 let rutaPacientes='http://localhost/github/cartelera/carteleraHSA/php/db.php';
 let rutaImagenes='http://localhost/github/cartelera/carteleraHSA/php/imagenes.php';
+let intervalo=0;
 function desaparecer(turno, entreturno) {
     turno.classList.remove("ver");
     turno.classList.add("no-ver");
@@ -63,18 +64,33 @@ async function consultarImagenes(){
     fetch(rutaImagenes)
     .then(respuesta=>respuesta.json())
     .then(arregloJson=>{
+        intervalo=2000;
         arregloJson.forEach((element,index)=>{
-            const nuevaDivision=document.createElement('div');
-            nuevaDivision.classList="carousel-item imgCarrusel flayer";
-            nuevaDivision.dataset.bsInterval="2000"
-            nuevaDivision.id=`flayer${index}`;
-            prueba.appendChild(nuevaDivision);
-            const elemento=document.getElementById(`flayer${index}`);
-            const nuevaImagen=document.createElement('img');
-            nuevaImagen.classList="img-fluid d-block h-100 bordeRedondeado";
-            nuevaImagen.src=`../imagenes/${element.url_mul}`;
-            elemento.appendChild(nuevaImagen);
-            console.log(element)
+            if(element.ubi_mul==='flayer'){
+                const nuevaDivision=document.createElement('div');
+                nuevaDivision.classList="carousel-item imgCarrusel flayer";
+                nuevaDivision.dataset.bsInterval=intervalo
+                nuevaDivision.id=`flayer${index}`;
+                flayer.appendChild(nuevaDivision);
+                const elemento=document.getElementById(`flayer${index}`);
+                const nuevaImagen=document.createElement('img');
+                nuevaImagen.classList="img-fluid d-block h-100 bordeRedondeado";
+                nuevaImagen.src=`../imagenes/${element.url_mul}`;
+                elemento.appendChild(nuevaImagen);
+                console.log(element)
+            }else{
+                const nuevaDivision=document.createElement('div');
+                nuevaDivision.classList="carousel-item h-100 cuadrado";
+                nuevaDivision.dataset.bsInterval=intervalo
+                nuevaDivision.id=`cuadrado${index}`;
+                cuadrado.appendChild(nuevaDivision);
+                const elemento=document.getElementById(`cuadrado${index}`);
+                const nuevaImagen=document.createElement('img');
+                nuevaImagen.classList="img-fluid d-block h-100 bordeRedondeado";
+                nuevaImagen.src=`../imagenes/${element.url_mul}`;
+                elemento.appendChild(nuevaImagen);
+                console.log(element)
+            }
         })
         
         
