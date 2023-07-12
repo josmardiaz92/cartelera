@@ -10,10 +10,13 @@
 
 body {
     background-color: rgb(255, 253, 253);
+    background-image: url('../../imagenes/fondo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .HSA {
-    background-color: #ffffff05;
+    background-color: rgba(255, 255, 255, 0.2); /* Cambia el valor de 0.5 según tu preferencia */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(25px);
 }
@@ -22,20 +25,14 @@ body {
     border-radius: 20px;
 }
 
-.turnoActual {
-    background-color: #ffffff05;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(25px);
-}
-
-.imgCarrusel {
+.imgCarrusel, .logo {
     border-radius: 10px;
-    height: 250px;
+    height: 200px;
     align-items: center;
 }
 
 .turnoActual {
-    height: 250px;
+    height: 200px;
 }
 
 .contenedor-body {

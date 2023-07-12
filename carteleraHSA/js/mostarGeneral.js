@@ -1,6 +1,6 @@
 let valorAnterior='';
-let rutaPacientes='http://localhost/github/cartelera/carteleraHSA/php/db.php';
-let rutaImagenes='http://localhost/github/cartelera/carteleraHSA/php/imagenes.php';
+let rutaPacientes='../php/db.php';
+let rutaImagenes='../php/imagenes.php';
 let intervalo=0;
 function desaparecer(turno, entreturno) {
     turno.classList.remove("ver");
