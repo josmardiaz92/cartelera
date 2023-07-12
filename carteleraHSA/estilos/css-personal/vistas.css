@@ -1,14 +1,15 @@
 @font-face{
 	font-family: 'personal';
-	src: url(../fuentes/Montserrat-VariableFont_wght.ttf);
+	src: url('http://localhost/github/cartelera/carteleraHSA/fuentes/Montserrat-VariableFont_wght.ttf');
 }
 
 *{
 	font-family: 'personal';
+
 }
 
 body {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(255, 253, 253);
 }
 
 .HSA {
@@ -29,8 +30,12 @@ body {
 
 .imgCarrusel {
     border-radius: 10px;
-    height: 135px;
+    height: 250px;
     align-items: center;
+}
+
+.turnoActual {
+    height: 250px;
 }
 
 .contenedor-body {

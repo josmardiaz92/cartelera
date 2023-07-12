@@ -43,7 +43,7 @@ async function consultarPacientes(){
             }
             setTimeout(() => {
                 desaparecer(turno, entreturno);
-            }, 15000);
+            }, 10000);
             //*Aquí puedes agregar cualquier acción que desees realizar cuando el valor cambie
         }
         //*Almacenar el valor actual para la siguiente comparación
@@ -63,9 +63,9 @@ async function consultarPacientes(){
 async function consultarImagenes(){
     fetch(rutaImagenes)
     .then(respuesta=>respuesta.json())
-    .then(arregloJson=>{
+    .then(arregloJsonImagenes=>{
         intervalo=2000;
-        arregloJson.forEach((element,index)=>{
+        arregloJsonImagenes.forEach((element,index)=>{
             if(element.ubi_mul==='flayer'){
                 const nuevaDivision=document.createElement('div');
                 nuevaDivision.classList="carousel-item imgCarrusel flayer";
@@ -85,7 +85,7 @@ async function consultarImagenes(){
                 cuadrado.appendChild(nuevaDivision);
                 const elemento=document.getElementById(`cuadrado${index}`);
                 const nuevaImagen=document.createElement('img');
-                nuevaImagen.classList="img-fluid d-block h-100 bordeRedondeado";
+                nuevaImagen.classList="img-fluid h-100 bordeRedondeado";
                 nuevaImagen.src=`../imagenes/${element.url_mul}`;
                 elemento.appendChild(nuevaImagen);
             }
@@ -96,8 +96,8 @@ async function consultarImagenes(){
     .catch(error=>{console.error(`Atención ${error}`)})
 }
 
-/* setInterval(() => {
+setInterval(() => {
     consultarPacientes();
-}, 1000); */
+}, 3000);
 
 consultarImagenes();
