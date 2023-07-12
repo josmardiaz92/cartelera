@@ -77,7 +77,6 @@ async function consultarImagenes(){
                 nuevaImagen.classList="img-fluid d-block h-100 bordeRedondeado";
                 nuevaImagen.src=`../imagenes/${element.url_mul}`;
                 elemento.appendChild(nuevaImagen);
-                console.log(element)
             }else{
                 const nuevaDivision=document.createElement('div');
                 nuevaDivision.classList="carousel-item h-100 cuadrado";
@@ -89,7 +88,6 @@ async function consultarImagenes(){
                 nuevaImagen.classList="img-fluid d-block h-100 bordeRedondeado";
                 nuevaImagen.src=`../imagenes/${element.url_mul}`;
                 elemento.appendChild(nuevaImagen);
-                console.log(element)
             }
         })
         
