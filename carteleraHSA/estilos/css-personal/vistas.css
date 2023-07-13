@@ -25,6 +25,16 @@ body {
     border-radius: 20px;
 }
 
+.bordeDerechoRedondeado {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.bordeIzquierdoRedondeado {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
 .imgCarrusel, .logo {
     border-radius: 10px;
     height: 200px;

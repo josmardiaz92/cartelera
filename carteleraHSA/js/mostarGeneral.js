@@ -2,22 +2,24 @@ let valorAnterior='';
 let rutaPacientes='../php/db.php';
 let rutaImagenes='../php/imagenes.php';
 let intervalo=0;
-function desaparecer(turno, entreturno) {
+function desaparecer(turno, entreturno, logo) {
     turno.classList.remove("ver");
     turno.classList.add("no-ver");
     entreturno.classList.remove("no-ver");
     entreturno.classList.add("ver");
     setTimeout(() => {
+        logo.classList.remove("HSA")
         turno.classList.add("d-none");
         entreturno.classList.remove("d-none");
     }, 550);
 }
-function aparecer(turno, entreturno) {
+function aparecer(turno, entreturno, logo) {
     turno.classList.remove("no-ver");
     turno.classList.add("ver");
     entreturno.classList.remove("ver");
     entreturno.classList.add("no-ver");
     setTimeout(() => {
+        logo.classList.add("HSA");
         turno.classList.remove("d-none");
         entreturno.classList.add("d-none");
     }, 550);
@@ -34,15 +36,16 @@ async function consultarPacientes(){
         if (arregloJson[0].nom_tur !== valorAnterior) {
             const turno = document.getElementById('turnoActual');
             const entreturno = document.getElementById('entreTurnos');
+            const logo=document.getElementById('logo');
             const textoaVoz = `Paciente ${arregloJson[0].nom_tur}, será atendido en ${arregloJson[0].especialidad}`;
             let i = 0;
             for (i = 0; i < 3; i++) {
-                aparecer(turno, entreturno);
+                aparecer(turno, entreturno, logo);
                 let utterance = new SpeechSynthesisUtterance(textoaVoz);
                 speechSynthesis.speak(utterance);
             }
             setTimeout(() => {
-                desaparecer(turno, entreturno);
+                desaparecer(turno, entreturno, logo);
             }, 10000);
             //*Aquí puedes agregar cualquier acción que desees realizar cuando el valor cambie
         }
@@ -75,7 +78,7 @@ async function consultarImagenes(){
                 const elemento=document.getElementById(`flayer${index}`);
                 const nuevaImagen=document.createElement('img');
                 nuevaImagen.classList="img-fluid d-block h-100 bordeRedondeado";
-                nuevaImagen.src=`../imagenes/${element.url_mul}`;
+                nuevaImagen.src=`../imagenes/${element.url_mul}.${element.ext_mul}`;
                 elemento.appendChild(nuevaImagen);
             }else{
                 const nuevaDivision=document.createElement('div');
@@ -86,7 +89,7 @@ async function consultarImagenes(){
                 const elemento=document.getElementById(`cuadrado${index}`);
                 const nuevaImagen=document.createElement('img');
                 nuevaImagen.classList="img-fluid h-100 bordeRedondeado";
-                nuevaImagen.src=`../imagenes/${element.url_mul}`;
+                nuevaImagen.src=`../imagenes/${element.url_mul}.${element.ext_mul}`;
                 elemento.appendChild(nuevaImagen);
             }
         })
