@@ -36,9 +36,15 @@ function consultar() {
 
  */
 
-let ruta = '../php/prueba.txt';
+let ruta = '../php/info.php';
 
 fetch(ruta)
+.then(resp => resp.json())
+.then(datos=>{
+    console.log(datos)
+})
+
+/* fetch(ruta)
 .then(resp => resp.text()) // Convertir la respuesta en texto
 .then(datos => {
     console.log(datos);
@@ -67,5 +73,5 @@ function insertarDatos(lineas) {
             }
         })
         .catch(error => { console.error('Error en la solicitud AJAX:', error); });
-}
+} */
 
