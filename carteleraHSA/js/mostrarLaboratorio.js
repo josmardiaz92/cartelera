@@ -1,5 +1,5 @@
 let valorAnterior='';
-let rutaPacientes='../php/db.php';
+let rutaPacientes='../php/consultarPaciente.php';
 let rutaImagenes='../php/imagenes.php';
 let intervalo=0;
 const areaVisual='laboratorio';

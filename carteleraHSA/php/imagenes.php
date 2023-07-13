@@ -1,33 +1,27 @@
 <?php
-// Datos de conexión a la base de datos
 $host = 'localhost';
-$dbname = 'hsa_gestorcola';
-$username = 'root';
-$password = '';
+$database = 'cartelera';
+$user = 'postgres';
+$password = '240296';
 
-// Conexión a la base de datos
-$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_EMULATE_PREPARES => false,
-];
 try {
-    $pdo = new PDO($dsn, $username, $password, $options);
+    $connection = new PDO("pgsql:host=$host;dbname=$database", $user, $password);
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $query = 'select * from multimedia';
+    $statement = $connection->query($query);
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    // Cerrar la conexión
+    $connection = null;
+
+    // Convertir los datos a JSON
+    $jsonResult = json_encode($result);
+
+    // Enviar los datos JSON como respuesta
+    header('Content-Type: application/json');
+    echo $jsonResult;
 } catch (PDOException $e) {
-    die('Error de conexión: ' . $e->getMessage());
+    echo json_encode(['error' => 'Error de conexión: ' . $e->getMessage()]);
 }
-
-// Consulta a la base de datos
-$query = 'select * from multimedia where est_mul="A"';
-$stmt = $pdo->query($query);
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Depuración
-if ($result === false) {
-    die('Error al ejecutar la consulta SQL: ' . print_r($stmt->errorInfo(), true));
-}
-
-// Devolver resultados como JSON
-header('Content-Type: application/json');
-echo json_encode($result);
 ?>
