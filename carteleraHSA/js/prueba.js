@@ -1,77 +1,23 @@
-/* let ruta = '../php/prueba.txt';
-let valorAnterior='';
-setInterval(() => {
-    consultar();
-}, 3000);
+fetch('../php/info.php')
+  .then(response => response.json())
+  .then(data => {
+    var consultorios = data;
 
+    console.log(consultorios); // Muestra los datos JSON en la consola del navegador
 
+    // Iterar sobre los datos JSON y acceder a los valores
+    for (var i = 0; i < consultorios.length; i++) {
+      var consultorio = consultorios[i];
+      var id = consultorio.cod_con;
+      var nombre = consultorio.num_con;
+      // Acceder a otros campos según sea necesario
 
-function consultar() {
-    fetch(ruta)
-        .then(resp => resp.text()) // Convertir la respuesta en texto
-        .then(datos => {
-            const regex = /paciente: (.+), consultorio: (.+)/;
-            const matches = datos.match(regex);
-            let paciente = '';
-            let consultorio = '';
-            if (matches) {
-                paciente = matches[1];
-                consultorio = matches[2];
-                
-            } else {
-                console.log("No se encontraron datos válidos en el texto.");
-            }
-            if(paciente!=valorAnterior){
-                console.log('cambio')
-            }else{
-                console.log('bien')
-            }
-            valorAnterior=paciente;
-
-        })
-        .catch(error => {
-            console.error('Error al leer el archivo:', error);
-        });
-}
-
- */
-
-let ruta = '../php/info.php';
-
-fetch(ruta)
-.then(resp => resp.json())
-.then(datos=>{
-    console.log(datos)
-})
-
-/* fetch(ruta)
-.then(resp => resp.text()) // Convertir la respuesta en texto
-.then(datos => {
-    console.log(datos);
-    const lineas = datos.split('\n'); // Dividir el contenido en líneas
-    console.log(lineas);
-    // Realizar la solicitud AJAX para enviar los datos al servidor
-    //insertarDatos(lineas);
-})
-.catch(error => {console.error('Error al leer el archivo:', error);
-});
-
-
-function insertarDatos(lineas) {
-    fetch('../php/insertar.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(lineas)
-    })
-        .then(response => {
-            if (response.ok) {
-                console.log('Datos insertados correctamente.');
-            } else {
-                throw new Error('Error al insertar los datos.');
-            }
-        })
-        .catch(error => { console.error('Error en la solicitud AJAX:', error); });
-} */
+      console.log('ID:', id);
+      console.log('Nombre:', nombre);
+      // Mostrar o realizar operaciones con otros campos
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 

@@ -1,14 +1,27 @@
 <?php
-$host = 'localhost'; // Cambia esto por la dirección de tu servidor de base de datos
-$database = 'cartelera'; // Cambia esto por el nombre de tu base de datos
-$user = 'postgres'; // Cambia esto por el nombre de usuario de tu base de datos
-$password = '240296'; // Cambia esto por la contraseña de tu base de datos
+$host = 'localhost';
+$database = 'cartelera';
+$user = 'postgres';
+$password = '240296';
 
 try {
     $connection = new PDO("pgsql:host=$host;dbname=$database", $user, $password);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo '¡Conexión exitosa a la base de datos!';
+
+    $query = "SELECT * FROM public.consultorio";
+    $statement = $connection->query($query);
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    // Cerrar la conexión
+    $connection = null;
+
+    // Convertir los datos a JSON
+    $jsonResult = json_encode($result);
+
+    // Enviar los datos JSON como respuesta
+    header('Content-Type: application/json');
+    echo $jsonResult;
 } catch (PDOException $e) {
-    echo 'Error de conexión: ' . $e->getMessage();
+    echo json_encode(['error' => 'Error de conexión: ' . $e->getMessage()]);
 }
 ?>

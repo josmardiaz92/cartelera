@@ -1,5 +1,5 @@
 let valorAnterior='';
-let rutaPacientes='../php/db.php';
+let rutaPacientes='../php/info.php';
 let rutaImagenes='../php/imagenes.php';
 let intervalo=0;
 const areaVisual='general';
@@ -110,3 +110,4 @@ setInterval(() => {
 }, 3000);
 
 consultarImagenes();
+
