@@ -18,7 +18,7 @@ try {
 }
 
 // Consulta a la base de datos
-$query = 'select * from turnos order by cod_tur desc limit 5';
+$query = 'select * from turnos order by codigo desc limit 5';
 $stmt = $pdo->query($query);
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
