@@ -62,8 +62,11 @@ async function consultarPacientes(){
         }
         listaPacientes=''; //*reiniciamos el valor para evitar errores
         //*itero el arreglo para sacar los valores
+        listaPacientes=''; //*reiniciamos el valor para evitar errores
+        let contadorPacientes=0;
+        //*itero el arreglo para sacar los valores
         arregloJson.forEach(function (element, index) {
-            if(element.area===areaVisual){
+            if(element.area===areaVisual && contadorPacientes < 5){
                 listaPacientes+=`
                     <tr>
                         <td class='text-center text-dark border-0 fs-3'>
@@ -73,6 +76,7 @@ async function consultarPacientes(){
                             <span>${element.consultorio}</span>
                         </td>
                     </tr>`
+                contadorPacientes++;
             }
         })
         tablaTurnos.innerHTML=listaPacientes;
