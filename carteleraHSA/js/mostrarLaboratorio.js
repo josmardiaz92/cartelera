@@ -3,6 +3,7 @@ let rutaPacientes='../php/consultarPaciente.php';
 let rutaImagenes='../php/imagenes.php';
 let intervalo=0;
 const areaVisual='laboratorio';
+let listaPacientes='';
 function desaparecer(turno, entreturno, logo) {
     turno.classList.remove("ver");
     turno.classList.add("no-ver");
@@ -59,15 +60,22 @@ async function consultarPacientes(){
             //*Almacenar el valor actual para la siguiente comparación
             valorAnterior = arregloJson[0].paciente;
         }
+        listaPacientes=''; //*reiniciamos el valor para evitar errores
         //*itero el arreglo para sacar los valores
         arregloJson.forEach(function (element, index) {
             if(element.area===areaVisual){
-                const turnoElement = document.getElementById(`turno${index + 1}`);
-                const enElement = document.getElementById(`en${index + 1}`);
-                turnoElement.textContent = element.paciente;
-                enElement.textContent = element.consultorio;
+                listaPacientes+=`
+                    <tr>
+                        <td class='text-center text-dark border-0 fs-3'>
+                            <span>${element.paciente}</span>
+                        </td>
+                        <td class='en text-center text-dark border-0 fs-3'>
+                            <span>${element.consultorio}</span>
+                        </td>
+                    </tr>`
             }
-        });
+        })
+        tablaTurnos.innerHTML=listaPacientes;
     })
     .catch(error=>{console.error(`Atención ${error}`)})
 

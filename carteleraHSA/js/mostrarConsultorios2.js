@@ -2,7 +2,7 @@ let valorAnterior='';
 let rutaPacientes='../php/consultarPaciente.php';
 let rutaImagenes='../php/imagenes.php';
 let intervalo=0;
-const areaVisual='imageniologia';
+const areaVisual='consultorios2';
 let listaPacientes='';
 function desaparecer(turno, entreturno, logo) {
     turno.classList.remove("ver");

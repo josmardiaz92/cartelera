@@ -2,7 +2,7 @@ let valorAnterior='';
 let rutaPacientes='../php/consultarPaciente.php';
 let rutaImagenes='../php/imagenes.php';
 let intervalo=0;
-const areaVisual='imageniologia';
+const areaVisual='consultorios1';
 let listaPacientes='';
 function desaparecer(turno, entreturno, logo) {
     turno.classList.remove("ver");
@@ -31,7 +31,7 @@ async function consultarPacientes(){
     fetch(rutaPacientes)
     .then(respuesta=>respuesta.json())
     .then(arregloJson=>{
-        if(arregloJson[0].area===areaVisual){
+        if(arregloJson[0].area===areaVisual || arregloJson[0].consultorio==='9'){
             //TODO mostrar el turno llamado en ese instante
             turnoPaciente.textContent=arregloJson[0].paciente;
             turnoArea.textContent=arregloJson[0].consultorio;
@@ -63,7 +63,7 @@ async function consultarPacientes(){
         listaPacientes=''; //*reiniciamos el valor para evitar errores
         //*itero el arreglo para sacar los valores
         arregloJson.forEach(function (element, index) {
-            if(element.area===areaVisual){
+            if(arregloJson[index].consultorio==='9' || element.area===areaVisual){
                 listaPacientes+=`
                     <tr>
                         <td class='text-center text-dark border-0 fs-3'>
