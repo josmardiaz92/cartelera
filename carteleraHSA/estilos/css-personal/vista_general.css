@@ -1,0 +1,43 @@
+/* @font-face{
+	font-family: 'personal';
+	src: url('http://localhost/cartelera/carteleraHSA/fuentes/Montserrat-VariableFont_wght.ttf');
+}
+
+*{
+	font-family: 'personal';
+
+} */
+
+body {
+    background-color: rgb(255, 253, 253);
+    background-image: url('../../imagenes/fondo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.HSA {
+    background-color: rgba(255, 255, 255, 0.2); /* Cambia el valor de 0.5 según tu preferencia */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(25px);
+}
+
+.bordeRedondeado {
+    border-radius: 20px;
+}
+
+.logo {
+    border-radius: 10px;
+    height: 200px;
+    align-items: center;
+    z-index: 1;
+}
+
+.contenedor {
+    z-index: -1;
+    height: 550px;
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover;
+}
