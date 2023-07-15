@@ -64,7 +64,7 @@ async function consultarPacientes(){
         let contadorPacientes=0;
         //*itero el arreglo para sacar los valores
         arregloJson.forEach(function (element, index) {
-            if((arregloJson[index].consultorio==='9' || element.area===areaVisual) && contadorPacientes < 5){
+            if(element.area===areaVisual && contadorPacientes < 5){
                 listaPacientes+=`
                     <tr>
                         <td class='text-center text-dark border-0 fs-3'>
