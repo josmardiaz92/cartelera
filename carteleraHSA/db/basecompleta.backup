@@ -1,0 +1,614 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.2.4
+-- Dumped by pg_dump version 9.2.4
+-- Started on 2023-07-18 11:43:02
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 179 (class 3079 OID 11727)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 1984 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 178 (class 1259 OID 49172)
+-- Name: cambio; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cambio (
+    cod_cam integer NOT NULL,
+    usd_cam numeric(10,2) NOT NULL,
+    cop_cam numeric(10,2) NOT NULL,
+    fec_cam timestamp with time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.cambio OWNER TO postgres;
+
+--
+-- TOC entry 1985 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: TABLE cambio; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE cambio IS 'tasas de cambio de bolivares a dolares y de pesos a dolares';
+
+
+--
+-- TOC entry 1986 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: COLUMN cambio.cod_cam; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN cambio.cod_cam IS 'codigo primario';
+
+
+--
+-- TOC entry 1987 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: COLUMN cambio.usd_cam; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN cambio.usd_cam IS 'tasa de bs a dolares';
+
+
+--
+-- TOC entry 1988 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: COLUMN cambio.cop_cam; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN cambio.cop_cam IS 'cambio de pesos a dolares';
+
+
+--
+-- TOC entry 177 (class 1259 OID 49170)
+-- Name: cambio_cod_cam_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cambio_cod_cam_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cambio_cod_cam_seq OWNER TO postgres;
+
+--
+-- TOC entry 1990 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: cambio_cod_cam_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cambio_cod_cam_seq OWNED BY cambio.cod_cam;
+
+
+--
+-- TOC entry 168 (class 1259 OID 16394)
+-- Name: consultorio; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE consultorio (
+    num_con character varying(20) NOT NULL,
+    are_con character varying(45) NOT NULL,
+    est_con character(1) DEFAULT 'A'::bpchar,
+    cod_con inet NOT NULL
+);
+
+
+ALTER TABLE public.consultorio OWNER TO postgres;
+
+--
+-- TOC entry 1991 (class 0 OID 0)
+-- Dependencies: 168
+-- Name: COLUMN consultorio.num_con; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN consultorio.num_con IS 'numero del consultorio';
+
+
+--
+-- TOC entry 1992 (class 0 OID 0)
+-- Dependencies: 168
+-- Name: COLUMN consultorio.are_con; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN consultorio.are_con IS 'area a la que pertece (consultorios, laboratorio, etc)';
+
+
+--
+-- TOC entry 1993 (class 0 OID 0)
+-- Dependencies: 168
+-- Name: COLUMN consultorio.cod_con; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN consultorio.cod_con IS 'prueba';
+
+
+--
+-- TOC entry 170 (class 1259 OID 24587)
+-- Name: multimedia; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE multimedia (
+    cod_mul integer NOT NULL,
+    url_mul character varying(100) NOT NULL,
+    ext_mul character varying(5) NOT NULL,
+    ubi_mul character varying(45) NOT NULL,
+    are_mul character varying(45) NOT NULL,
+    dur_mul integer DEFAULT 2000,
+    est_mul character(1) DEFAULT 'A'::bpchar
+);
+
+
+ALTER TABLE public.multimedia OWNER TO postgres;
+
+--
+-- TOC entry 1994 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: TABLE multimedia; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE multimedia IS 'archivos multimedia';
+
+
+--
+-- TOC entry 1995 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: COLUMN multimedia.cod_mul; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN multimedia.cod_mul IS 'pky';
+
+
+--
+-- TOC entry 1996 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: COLUMN multimedia.url_mul; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN multimedia.url_mul IS 'nombre del archivo multimedia';
+
+
+--
+-- TOC entry 1997 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: COLUMN multimedia.ext_mul; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN multimedia.ext_mul IS 'extension del archivo multimedia';
+
+
+--
+-- TOC entry 1998 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: COLUMN multimedia.ubi_mul; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN multimedia.ubi_mul IS 'ubicacion en la pantalla: falyer o cuadrado';
+
+
+--
+-- TOC entry 1999 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: COLUMN multimedia.are_mul; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN multimedia.are_mul IS 'area en la cual sera mostrado el archivo multimedia';
+
+
+--
+-- TOC entry 2000 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: COLUMN multimedia.dur_mul; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN multimedia.dur_mul IS 'duracion de los archivos multimedia en microsegundos (1000 x cada segundo)';
+
+
+--
+-- TOC entry 2001 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: COLUMN multimedia.est_mul; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN multimedia.est_mul IS 'estatus:  A - activo I - inactivo';
+
+
+--
+-- TOC entry 169 (class 1259 OID 24585)
+-- Name: multimedia_cod_mul_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE multimedia_cod_mul_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.multimedia_cod_mul_seq OWNER TO postgres;
+
+--
+-- TOC entry 2002 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: multimedia_cod_mul_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE multimedia_cod_mul_seq OWNED BY multimedia.cod_mul;
+
+
+--
+-- TOC entry 172 (class 1259 OID 24594)
+-- Name: turno; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE turno (
+    cod_tur integer NOT NULL,
+    nom_tur character varying(100) NOT NULL,
+    fec_tur timestamp without time zone DEFAULT now(),
+    are_tur character varying(50),
+    fky_con inet DEFAULT inet_client_addr() NOT NULL
+);
+
+
+ALTER TABLE public.turno OWNER TO postgres;
+
+--
+-- TOC entry 2003 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: TABLE turno; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE turno IS 'aca se haran los inserts desde la otra base de datos';
+
+
+--
+-- TOC entry 2004 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: COLUMN turno.nom_tur; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN turno.nom_tur IS 'nombre del paciente';
+
+
+--
+-- TOC entry 2005 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: COLUMN turno.fec_tur; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN turno.fec_tur IS 'fecha';
+
+
+--
+-- TOC entry 2006 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: COLUMN turno.are_tur; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN turno.are_tur IS 'area de donde viene el dato';
+
+
+--
+-- TOC entry 171 (class 1259 OID 24592)
+-- Name: turno_cod_tur_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE turno_cod_tur_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.turno_cod_tur_seq OWNER TO postgres;
+
+--
+-- TOC entry 2008 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: turno_cod_tur_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE turno_cod_tur_seq OWNED BY turno.cod_tur;
+
+
+--
+-- TOC entry 175 (class 1259 OID 49162)
+-- Name: turnoscon1; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW turnoscon1 AS
+    SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, c.are_con AS area FROM (turno t JOIN consultorio c ON (((t.fky_con)::text = (c.cod_con)::text))) WHERE (((t.fec_tur)::date = ('now'::text)::date) AND ((c.are_con)::text = 'consultorios1'::text));
+
+
+ALTER TABLE public.turnoscon1 OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 49166)
+-- Name: turnoscon2; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW turnoscon2 AS
+    SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, c.are_con AS area FROM (turno t JOIN consultorio c ON (((t.fky_con)::text = (c.cod_con)::text))) WHERE (((t.fec_tur)::date = ('now'::text)::date) AND ((c.are_con)::text = 'consultorios2'::text));
+
+
+ALTER TABLE public.turnoscon2 OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 49158)
+-- Name: turnosima; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW turnosima AS
+    SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, c.are_con AS area FROM (turno t JOIN consultorio c ON (((t.fky_con)::text = (c.cod_con)::text))) WHERE (((t.fec_tur)::date = ('now'::text)::date) AND ((c.are_con)::text = 'imageniologia'::text));
+
+
+ALTER TABLE public.turnosima OWNER TO postgres;
+
+--
+-- TOC entry 2010 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: VIEW turnosima; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON VIEW turnosima IS 'turnos de imageniologia';
+
+
+--
+-- TOC entry 173 (class 1259 OID 40994)
+-- Name: turnoslab; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW turnoslab AS
+    SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, c.are_con AS area FROM (turno t JOIN consultorio c ON (((t.fky_con)::text = (c.cod_con)::text))) WHERE (((t.fec_tur)::date = ('now'::text)::date) AND ((c.are_con)::text = 'laboratorio'::text));
+
+
+ALTER TABLE public.turnoslab OWNER TO postgres;
+
+--
+-- TOC entry 1961 (class 2604 OID 49175)
+-- Name: cod_cam; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cambio ALTER COLUMN cod_cam SET DEFAULT nextval('cambio_cod_cam_seq'::regclass);
+
+
+--
+-- TOC entry 1955 (class 2604 OID 24590)
+-- Name: cod_mul; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY multimedia ALTER COLUMN cod_mul SET DEFAULT nextval('multimedia_cod_mul_seq'::regclass);
+
+
+--
+-- TOC entry 1958 (class 2604 OID 24597)
+-- Name: cod_tur; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY turno ALTER COLUMN cod_tur SET DEFAULT nextval('turno_cod_tur_seq'::regclass);
+
+
+--
+-- TOC entry 1976 (class 0 OID 49172)
+-- Dependencies: 178
+-- Data for Name: cambio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cambio (cod_cam, usd_cam, cop_cam, fec_cam) FROM stdin;
+1	28.30	4000.00	0001-01-01 11:04:14-04:27:44 BC
+2	30.45	4000.00	2023-07-18 11:09:35.959-04:30
+\.
+
+
+--
+-- TOC entry 2011 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: cambio_cod_cam_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cambio_cod_cam_seq', 2, true);
+
+
+--
+-- TOC entry 1970 (class 0 OID 16394)
+-- Dependencies: 168
+-- Data for Name: consultorio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY consultorio (num_con, are_con, est_con, cod_con) FROM stdin;
+laboratorio	laboratorio	A	192.168.75.109
+resonancia	imageniologia	A	192.168.75.208
+rayos x	imageniologia	A	192.168.75.207
+emergencias	imageniologia	A	192.168.75.143
+servidor-prueba	servidor	A	192.168.75.1
+5	laboratorio	A	192.168.75.115
+9	laboratorio	A	192.168.75.151
+3	laboratorio	A	192.168.75.155
+6	laboratorio	A	192.168.75.146
+2	laboratorio	A	192.168.75.148
+11	consultorios1	A	192.168.75.123
+12	consultorios1	A	192.168.75.124
+10	consultorios1	A	192.168.75.125
+14	consultorios1	A	192.168.75.140
+13	consultorios1	A	192.168.75.204
+7	consultorios1	A	192.168.75.132
+17	consultorios2	A	192.168.75.104
+19	consultorios2	A	192.168.75.106
+20	consultorios2	A	192.168.75.113
+18	consultorios2	A	192.168.75.114
+16	consultorios2	A	192.168.75.117
+21	consultorios2	A	192.168.75.184
+\.
+
+
+--
+-- TOC entry 1972 (class 0 OID 24587)
+-- Dependencies: 170
+-- Data for Name: multimedia; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY multimedia (cod_mul, url_mul, ext_mul, ubi_mul, are_mul, dur_mul, est_mul) FROM stdin;
+1	imagen1	png	cuadrado	general	2000	A
+2	imagen2	jpg	cuadrado	general	2000	A
+3	imagen3	jpg	cuadrado	general	2000	A
+4	imagen4	png	flayer	general	2000	A
+6	imagen5	jpg	flayer	general	2000	A
+7	frasemotivacional01	jpg	cuadrado	general	2000	A
+8	mensaje_madreEmilia	jpg	cuadrado	general	2000	A
+9	mensaje_santiagoMachado	jpg	cuadrado	general	2000	A
+\.
+
+
+--
+-- TOC entry 2012 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: multimedia_cod_mul_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('multimedia_cod_mul_seq', 9, true);
+
+
+--
+-- TOC entry 1974 (class 0 OID 24594)
+-- Dependencies: 172
+-- Data for Name: turno; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY turno (cod_tur, nom_tur, fec_tur, are_tur, fky_con) FROM stdin;
+47	josmar	2023-07-18 07:11:06.699	laboratorio	192.168.75.148
+48	josmar	2023-07-18 07:11:29.882	laboratorio	192.168.75.140
+49	josmar	2023-07-18 07:13:20.442	laboratorio	192.168.75.143
+50	josmar	2023-07-18 07:18:14.44	cualquiera	192.168.75.117
+\.
+
+
+--
+-- TOC entry 2013 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: turno_cod_tur_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('turno_cod_tur_seq', 50, true);
+
+
+--
+-- TOC entry 1968 (class 2606 OID 49178)
+-- Name: cod_cam; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cambio
+    ADD CONSTRAINT cod_cam PRIMARY KEY (cod_cam);
+
+
+--
+-- TOC entry 1964 (class 2606 OID 40982)
+-- Name: pk_cod_con; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY consultorio
+    ADD CONSTRAINT pk_cod_con PRIMARY KEY (cod_con);
+
+
+--
+-- TOC entry 1966 (class 2606 OID 40988)
+-- Name: pk_cod_tur; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY turno
+    ADD CONSTRAINT pk_cod_tur PRIMARY KEY (cod_tur);
+
+
+--
+-- TOC entry 1969 (class 2606 OID 40989)
+-- Name: fk_fky_con; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY turno
+    ADD CONSTRAINT fk_fky_con FOREIGN KEY (fky_con) REFERENCES consultorio(cod_con);
+
+
+--
+-- TOC entry 1983 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- TOC entry 1989 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: cambio; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE cambio FROM PUBLIC;
+REVOKE ALL ON TABLE cambio FROM postgres;
+GRANT ALL ON TABLE cambio TO postgres;
+GRANT ALL ON TABLE cambio TO PUBLIC;
+
+
+--
+-- TOC entry 2007 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: turno; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE turno FROM PUBLIC;
+REVOKE ALL ON TABLE turno FROM postgres;
+GRANT ALL ON TABLE turno TO postgres;
+GRANT ALL ON TABLE turno TO PUBLIC;
+
+
+--
+-- TOC entry 2009 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: turno_cod_tur_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON SEQUENCE turno_cod_tur_seq FROM PUBLIC;
+REVOKE ALL ON SEQUENCE turno_cod_tur_seq FROM postgres;
+GRANT ALL ON SEQUENCE turno_cod_tur_seq TO postgres;
+GRANT ALL ON SEQUENCE turno_cod_tur_seq TO PUBLIC;
+
+
+-- Completed on 2023-07-18 11:43:03
+
+--
+-- PostgreSQL database dump complete
+--
+
