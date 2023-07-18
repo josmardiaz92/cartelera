@@ -1,5 +1,5 @@
 let valorAnterior='';
-let rutaPacientes='../php/consultarPaciente.php';
+let rutaPacientes='../php/consultarPacienteCon2.php';
 let rutaImagenes='../php/imagenes.php';
 let intervalo=0;
 const areaVisual='consultorios2';
@@ -31,35 +31,33 @@ async function consultarPacientes(){
     fetch(rutaPacientes)
     .then(respuesta=>respuesta.json())
     .then(arregloJson=>{
-        if(arregloJson[0].area===areaVisual){
-            //TODO mostrar el turno llamado en ese instante
-            turnoPaciente.textContent=arregloJson[0].paciente;
-            turnoArea.textContent=arregloJson[0].consultorio;
-            //*Comparar el valor actual con el valor anterior
-            if (arregloJson[0].paciente !== valorAnterior) {
-                const turno = document.getElementById('turnoActual');
-                const entreturno = document.getElementById('entreTurnos');
-                const logo=document.getElementById('logo');
-                let textoaVoz='';
-                if(isNaN(arregloJson[0].consultorio)){
-                    textoaVoz = `Paciente ${arregloJson[0].paciente}, será atendido en el  área de ${arregloJson[0].consultorio}`;
-                }else{
-                    textoaVoz = `Paciente ${arregloJson[0].paciente}, será atendido en el consutorio número ${arregloJson[0].consultorio}`;
-                }
-                let i = 0;
-                for (i = 0; i < 3; i++) {
-                    aparecer(turno, entreturno, logo);
-                    let utterance = new SpeechSynthesisUtterance(textoaVoz);
-                    speechSynthesis.speak(utterance);
-                }
-                setTimeout(() => {
-                    desaparecer(turno, entreturno, logo);
-                }, 10000);
-                //*Aquí puedes agregar cualquier acción que desees realizar cuando el valor cambie
+        //TODO mostrar el turno llamado en ese instante
+        turnoPaciente.textContent=arregloJson[0].paciente;
+        turnoArea.textContent=arregloJson[0].consultorio;
+        //*Comparar el valor actual con el valor anterior
+        if (arregloJson[0].paciente !== valorAnterior) {
+            const turno = document.getElementById('turnoActual');
+            const entreturno = document.getElementById('entreTurnos');
+            const logo=document.getElementById('logo');
+            let textoaVoz='';
+            if(isNaN(arregloJson[0].consultorio)){
+                textoaVoz = `Paciente ${arregloJson[0].paciente}, será atendido en el  área de ${arregloJson[0].consultorio}`;
+            }else{
+                textoaVoz = `Paciente ${arregloJson[0].paciente}, será atendido en el consutorio número ${arregloJson[0].consultorio}`;
             }
-            //*Almacenar el valor actual para la siguiente comparación
-            valorAnterior = arregloJson[0].paciente;
+            let i = 0;
+            for (i = 0; i < 3; i++) {
+                aparecer(turno, entreturno, logo);
+                let utterance = new SpeechSynthesisUtterance(textoaVoz);
+                speechSynthesis.speak(utterance);
+            }
+            setTimeout(() => {
+                desaparecer(turno, entreturno, logo);
+            }, 10000);
+            //*Aquí puedes agregar cualquier acción que desees realizar cuando el valor cambie
         }
+        //*Almacenar el valor actual para la siguiente comparación
+        valorAnterior = arregloJson[0].paciente;
         listaPacientes=''; //*reiniciamos el valor para evitar errores
         let contadorPacientes=0;
         //*itero el arreglo para sacar los valores

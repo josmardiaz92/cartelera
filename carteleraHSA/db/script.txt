@@ -1,44 +1,31 @@
-CREATE TABLE `consultorio` (
-  `cod_con` varchar(15) NOT NULL COMMENT 'El código primario de esta tabla será la IP del equipo',
-  `num_con` varchar(20) NOT NULL COMMENT 'Número del consultorio',
-  `are_con` varchar(45) NOT NULL,
-  `est_con` char(1) DEFAULT 'A' COMMENT 'estatus:\\n\\nA - activo\\nI - inactivo',
-  PRIMARY KEY (`cod_con`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Número del consultorio, segun laIP del equipo'
+ --Vista de turnos de laboratorio
+ SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, 
+    c.are_con AS area
+   FROM turno t
+   JOIN consultorio c ON t.fky_con::text = c.cod_con::text
+  WHERE t.fec_tur::date = 'now'::text::date and
+  c.are_con = 'laboratorio';
 
-CREATE TABLE `turno` (
-  `cod_tur` int(11) NOT NULL AUTO_INCREMENT COMMENT 'pk',
-  `nom_tur` varchar(100) NOT NULL COMMENT 'nombre del paciente a atander',
-  `fky_con` varchar(15) NOT NULL COMMENT 'ip que identificará el numero del consultorio',
-  `fec_tur` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`cod_tur`),
-  KEY `fky_con` (`fky_con`),
-  CONSTRAINT `fky_con` FOREIGN KEY (`fky_con`) REFERENCES `consultorio` (`cod_con`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1 COMMENT='Acá se haran los inserts de los turnos'
+  --Vista de turnos de imageniologia
+   SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, 
+    c.are_con AS area
+   FROM turno t
+   JOIN consultorio c ON t.fky_con::text = c.cod_con::text
+  WHERE t.fec_tur::date = 'now'::text::date and
+  c.are_con = 'imageniologia';
 
-CREATE TABLE `multimedia` (
-  `cod_mul` int(11) NOT NULL AUTO_INCREMENT,
-  `url_mul` varchar(100) NOT NULL COMMENT 'direccion url del archivo',
-  `ext_mul` varchar(5) NOT NULL COMMENT 'extension del archivo ',
-  `ubi_mul` varchar(45) NOT NULL COMMENT 'ubicacion en la pantalla: logo, fondo, flayer o cuadrado',
-  `are_mul` varchar(45) NOT NULL COMMENT 'area o pantalla donde será mostrado',
-  `dur_mul` int(11) DEFAULT NULL COMMENT 'duracion del archivo en milisegundos, solo aplicable a videos',
-  `est_mul` char(1) DEFAULT 'A' COMMENT 'estatus: A - activo I - inactivo',
-  PRIMARY KEY (`cod_mul`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COMMENT='data de archivos multimedia'
+  --Vista de turnos de consultorios1
+  SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, 
+    c.are_con AS area
+   FROM turno t
+   JOIN consultorio c ON t.fky_con::text = c.cod_con::text
+  WHERE t.fec_tur::date = 'now'::text::date and
+  c.are_con = 'consultorios1';
 
-CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
-VIEW `turnos` AS
-    SELECT 
-        `t`.`cod_tur` AS `codigo`,
-        `t`.`nom_tur` AS `paciente`,
-        `c`.`num_con` AS `consultorio`,
-        `c`.`are_con` AS `area`
-    FROM
-        (`turno` `t`
-        JOIN `consultorio` `c` ON ((`t`.`fky_con` = `c`.`cod_con`)))
-    WHERE
-        (CAST(`t`.`fec_tur` AS DATE) = CURDATE())
+  --Vista de turnos de consultorios2
+  SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, 
+    c.are_con AS area
+   FROM turno t
+   JOIN consultorio c ON t.fky_con::text = c.cod_con::text
+  WHERE t.fec_tur::date = 'now'::text::date and
+  c.are_con = 'consultorios2';
