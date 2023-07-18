@@ -9,18 +9,7 @@ async function consultarImagenes(){
         arregloJsonImagenes.forEach((element,index)=>{
             intervalo=element.dur_mul;
             if(element.are_mul===areaVisual){
-                if(element.ubi_mul==='flayer'){
-                    const nuevaDivision=document.createElement('div');
-                    nuevaDivision.classList="carousel-item imgCarrusel flayer";
-                    nuevaDivision.dataset.bsInterval=intervalo
-                    nuevaDivision.id=`flayer${index}`;
-                    flayer.appendChild(nuevaDivision);
-                    const elemento=document.getElementById(`flayer${index}`);
-                    const nuevaImagen=document.createElement('img');
-                    nuevaImagen.classList="img-fluid d-block bordeRedondeado";
-                    nuevaImagen.src=`../imagenes/${element.url_mul}.${element.ext_mul}`;
-                    elemento.appendChild(nuevaImagen);
-                }else{
+                if(element.ubi_mul==='cuadrado'){
                     const nuevaDivision=document.createElement('div');
                     nuevaDivision.classList="carousel-item cuadrado h-100";
                     nuevaDivision.dataset.bsInterval=intervalo
@@ -38,7 +27,7 @@ async function consultarImagenes(){
     .catch(error=>{console.error(`Atención ${error}`)})
 }
 
-/* consultarImagenes(); */
+consultarImagenes();
 
 function mostrarHora() {
     let reloj=document.getElementById('reloj');

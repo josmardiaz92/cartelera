@@ -1,4 +1,4 @@
-/* @font-face{
+@font-face{
 	font-family: 'personal';
 	src: url('http://localhost/cartelera/carteleraHSA/fuentes/Montserrat-VariableFont_wght.ttf');
 }
@@ -6,7 +6,7 @@
 *{
 	font-family: 'personal';
 
-} */
+}
 
 body {
     background-color: rgb(255, 253, 253);
@@ -34,7 +34,7 @@ body {
 
 .contenedor {
     z-index: -1;
-    height: 450px;
+    height: 550px;
 }
 
 .carousel-item img {
