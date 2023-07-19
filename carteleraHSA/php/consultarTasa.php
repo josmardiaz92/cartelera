@@ -8,7 +8,8 @@ try {
     $connection = new PDO("pgsql:host=$host;dbname=$database", $user, $password);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $query = "SELECT * FROM cambio WHERE fec_cam::date = 'now'::text::date";
+    $query = "SELECT * FROM cambio WHERE fec_cam::date = 'now'::text::date ORDER BY cod_cam DESC
+    LIMIT 1";
     $statement = $connection->query($query);
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
