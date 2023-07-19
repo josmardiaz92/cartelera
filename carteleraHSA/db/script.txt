@@ -29,3 +29,39 @@
    JOIN consultorio c ON t.fky_con::text = c.cod_con::text
   WHERE t.fec_tur::date = 'now'::text::date and
   c.are_con = 'consultorios2';
+
+--Datos de consultorios
+
+('laboratorio','laboratorio','A','192.168.75.109'),
+('resonancia','imageniologia','A','192.168.75.208'),
+('rayos x','imageniologia','A','192.168.75.207'),
+('emergencias','imageniologia','A','192.168.75.143'),
+('servidor-prueba','servidor','A','192.168.75.1'),
+('5','laboratorio','A','192.168.75.115'),
+('9','laboratorio','A','192.168.75.151'),
+('3','laboratorio','A','192.168.75.155'),
+('6','laboratorio','A','192.168.75.146'),
+('2','laboratorio','A','192.168.75.148'),
+('11','consultorios1','A','192.168.75.123'),
+('12','consultorios1','A','192.168.75.124'),
+('10','consultorios1','A','192.168.75.125'),
+('14','consultorios1','A','192.168.75.140'),
+('13','consultorios1','A','192.168.75.204'),
+('7','consultorios1','A','192.168.75.132'),
+('17','consultorios2','A','192.168.75.104'),
+('19','consultorios2','A','192.168.75.106'),
+('20','consultorios2','A','192.168.75.113'),
+('18','consultorios2','A','192.168.75.114'),
+('16','consultorios2','A','192.168.75.117'),
+('21','consultorios2','A','192.168.75.184')
+
+--Datos de imagenes
+
+('imagen1','png','cuadrado','general','2000','A'),
+('imagen2','jpg','cuadrado','general','2000','A'),
+('imagen3','jpg','cuadrado','general','2000','A'),
+('imagen4','png','flayer','general','2000','A'),
+('imagen5','jpg','flayer','general','2000','A'),
+('frasemotivacional01','jpg','cuadrado','general','2000','A'),
+('mensaje_madreEmilia','jpg','cuadrado','general','2000','A'),
+('mensaje_santiagoMachado','jpg','cuadrado','general','2000','A')
