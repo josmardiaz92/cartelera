@@ -27,8 +27,6 @@ async function consultarImagenes(){
     .catch(error=>{console.error(`Atención ${error}`)})
 }
 
-consultarImagenes();
-
 function mostrarHora() {
     let reloj=document.getElementById('reloj');
     let fecha = new Date();
@@ -48,6 +46,9 @@ function mostrarHora() {
 function formatoDosDigitos(numero) {
     return numero < 10 ? "0" + numero : numero;
 }
+
+
+consultarImagenes();
 
 setInterval(mostrarHora, 1000);
 
