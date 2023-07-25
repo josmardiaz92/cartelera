@@ -33,15 +33,21 @@ async function consultarPacientes(){
     .then(arregloJson=>{
         if(arregloJson.length>0){
             //TODO mostrar el turno llamado en ese instante
-            turnoPaciente.textContent=arregloJson[0].paciente;
-            turnoArea.textContent=arregloJson[0].consultorio;
+            if(isNaN(parseInt(arregloJson[0].consultorio))){
+                turnoPaciente.textContent=arregloJson[0].paciente;
+                turnoArea.textContent=arregloJson[0].consultorio;
+            }else{
+                turnoPaciente.textContent=arregloJson[0].paciente;
+                turnoArea.textContent=`Consultorio ${arregloJson[0].consultorio}`;
+            }
+            
             //*Comparar el valor actual con el valor anterior
             if (arregloJson[0].paciente !== valorAnterior) {
                 const turno = document.getElementById('turnoActual');
                 const entreturno = document.getElementById('entreTurnos');
                 const logo=document.getElementById('logo');
                 let textoaVoz='';
-                if(isNaN(arregloJson[0].consultorio)){
+                if(isNaN(parseInt(arregloJson[0].consultorio))){
                     textoaVoz = `Paciente ${arregloJson[0].paciente}, será atendido en el  área de ${arregloJson[0].consultorio}`;
                 }else{
                     textoaVoz = `Paciente ${arregloJson[0].paciente}, será atendido en el consutorio número ${arregloJson[0].consultorio}`;
@@ -65,7 +71,8 @@ async function consultarPacientes(){
             //*itero el arreglo para sacar los valores
             arregloJson.forEach(function (element, index) {
                 if(contadorPacientes < 5){
-                    listaPacientes+=`
+                    if(isNaN(parseInt(element.consultorio))){
+                        listaPacientes+=`
                         <tr>
                             <td class='text-center text-dark border-0 fs-3'>
                                 <span>${element.paciente}</span>
@@ -73,9 +80,21 @@ async function consultarPacientes(){
                             <td class='en text-center text-dark border-0 fs-3'>
                                 <span>${element.consultorio}</span>
                             </td>
-                        </tr>`
+                        </tr>`;
+                    }else{
+                        listaPacientes+=`
+                        <tr>
+                            <td class='text-center text-dark border-0 fs-3'>
+                                <span>${element.paciente}</span>
+                            </td>
+                            <td class='en text-center text-dark border-0 fs-3'>
+                                <span>Consultorio ${element.consultorio}</span>
+                            </td>
+                        </tr>`;
+                    }
+                    
                     contadorPacientes++;
-                }
+                };
             })
             tablaTurnos.innerHTML=listaPacientes;
         }
