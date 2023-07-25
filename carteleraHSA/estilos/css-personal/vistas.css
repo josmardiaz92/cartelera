@@ -35,10 +35,14 @@ body {
     border-bottom-left-radius: 20px;
 }
 
-.imgCarrusel, .logo {
+.imgCarrusel {
+    border-radius: 10px;
+    height: 100px;
+}
+
+.logo {
     border-radius: 10px;
     height: 200px;
-    align-items: center;
 }
 
 .turnoActual {
