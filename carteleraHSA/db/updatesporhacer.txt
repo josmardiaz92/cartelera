@@ -1,0 +1,45 @@
+CAMBIAR EL NOMBRE DE CONSULTORIO 6 A AREA DE ECOGRAFIA
+UPDATE consultorio
+   SET num_con='ecografía'
+ WHERE cod_con='192.168.75.146';
+
+CAMBIAR EL CONSULTORIO 9 (CARDIOLOGIA), DEL AREA DE LABORATORIO, AL AREA DE CONSULTORIOS 1
+UPDATE consultorio
+   SET are_con='consultorios1'
+ WHERE cod_con='192.168.75.151';
+
+CAMBIO DE AREA DEL CONSULTORIO 14, DE CONSULTORIOS1 A CONSULTORIOS3
+UPDATE consultorio
+   SET are_con='consultorios3'
+ WHERE num_con='14';
+
+CAMBIO DE AREA DE RAYOS X, DE IMAGENIOLOGIA A RAYOS X
+UPDATE consultorio
+   SET are_con='rayos x'
+ WHERE num_con='rayos x';
+
+AGREGAR VISTAS:
+  --vista de turnos de consultorios3
+  SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, 
+    c.are_con AS area
+   FROM turno t
+   JOIN consultorio c ON t.fky_con::text = c.cod_con::text
+  WHERE t.fec_tur::date = 'now'::text::date and
+  c.are_con = 'consultorios3';
+
+  --vista del turnos de odontologia
+  SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, 
+    c.are_con AS area
+   FROM turno t
+   JOIN consultorio c ON t.fky_con::text = c.cod_con::text
+  WHERE t.fec_tur::date = 'now'::text::date and
+  c.are_con = 'odontologia';
+
+  --vista de turnos de rayos X
+  SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, 
+    c.are_con AS area
+   FROM turno t
+   JOIN consultorio c ON t.fky_con::text = c.cod_con::text
+  WHERE t.fec_tur::date = 'now'::text::date and
+  c.are_con = 'rayos x';
+

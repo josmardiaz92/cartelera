@@ -30,6 +30,30 @@
   WHERE t.fec_tur::date = 'now'::text::date and
   c.are_con = 'consultorios2';
 
+  --vista de turnos de consultorios3
+  SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, 
+    c.are_con AS area
+   FROM turno t
+   JOIN consultorio c ON t.fky_con::text = c.cod_con::text
+  WHERE t.fec_tur::date = 'now'::text::date and
+  c.are_con = 'consultorios3';
+
+  --vista del turnos de odontologia
+  SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, 
+    c.are_con AS area
+   FROM turno t
+   JOIN consultorio c ON t.fky_con::text = c.cod_con::text
+  WHERE t.fec_tur::date = 'now'::text::date and
+  c.are_con = 'odontologia';
+
+  --vista de turnos de rayos X
+  SELECT t.cod_tur AS codigo, t.nom_tur AS paciente, c.num_con AS consultorio, 
+    c.are_con AS area
+   FROM turno t
+   JOIN consultorio c ON t.fky_con::text = c.cod_con::text
+  WHERE t.fec_tur::date = 'now'::text::date and
+  c.are_con = 'rayos x';
+
 --Datos de consultorios
 
 ('laboratorio','laboratorio','A','192.168.75.109'),
