@@ -46,7 +46,11 @@ async function consultarPacientes(){
                 const turno = document.getElementById('turnoActual');
                 const entreturno = document.getElementById('entreTurnos');
                 const logo=document.getElementById('logo');
-                let textoaVoz='';
+
+                //Todo provisional
+                const contenedorAudio = pinProvisional(turno, entreturno, logo);
+                
+                /* let textoaVoz='';
                 if(isNaN(parseInt(arregloJson[0].consultorio))){
                     textoaVoz = `Paciente ${arregloJson[0].paciente}, será atendido en el  área de ${arregloJson[0].consultorio}`;
                 }else{
@@ -57,8 +61,9 @@ async function consultarPacientes(){
                     aparecer(turno, entreturno, logo);
                     let utterance = new SpeechSynthesisUtterance(textoaVoz);
                     speechSynthesis.speak(utterance);
-                }
+                } */
                 setTimeout(() => {
+                    contenedorAudio.innerHTML='';
                     desaparecer(turno, entreturno, logo);
                 }, 10000);
                 //*Aquí puedes agregar cualquier acción que desees realizar cuando el valor cambie
@@ -100,6 +105,30 @@ async function consultarPacientes(){
         }
     })
     .catch(error=>{console.error(`Atención ${error}`)})
+}
+
+function pinProvisional(turno, entreturno, logo) {
+    const contenedorAudio = document.getElementById('contenedorAudio');
+    const audio = document.createElement('audio');
+    audio.src = '../tonos/hangouts_message.ogg';
+    audio.autoplay = true;
+    contenedorAudio.appendChild(audio);
+    aparecer(turno, entreturno, logo);
+    // Función para reproducir el audio cada 4 segundos, 3 veces en total
+    function reproducirAudioCada4Segundos(veces) {
+        if (veces <= 0) {
+            return;
+        }
+
+        setTimeout(() => {
+            audio.currentTime = 0; // Reinicia el audio al principio
+            audio.play();
+            reproducirAudioCada4Segundos(veces - 1); // Llamada recursiva para reproducir el audio nuevamente
+        }, 3000);
+    }
+    // Iniciar la reproducción del audio tres veces
+    reproducirAudioCada4Segundos(3);
+    return contenedorAudio;
 }
 
 async function consultarImagenes(){
