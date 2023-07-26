@@ -1,8 +1,7 @@
 let valorAnterior='';
 let rutaPacientes='../php/consultarPacienteLab.php';
-let rutaImagenes='../php/imagenes.php';
+let rutaImagenes='../php/consultarImagenesLab.php';
 let intervalo=0;
-const areaVisual='laboratorio';
 let listaPacientes='';
 function desaparecer(turno, entreturno, logo) {
     turno.classList.remove("ver");
@@ -136,32 +135,31 @@ async function consultarImagenes(){
     .then(respuesta=>respuesta.json())
     .then(arregloJsonImagenes=>{
         arregloJsonImagenes.forEach((element,index)=>{
-            intervalo=element.dur_mul;
-            if(element.are_mul==='general' || element.are_mul===areaVisual){
-                if(element.ubi_mul==='flayer'){
-                    const nuevaDivision=document.createElement('div');
-                    nuevaDivision.classList="carousel-item imgCarrusel flayer";
-                    nuevaDivision.dataset.bsInterval=intervalo;
-                    nuevaDivision.id=`flayer${index}`;
-                    flayer.appendChild(nuevaDivision);
-                    const elemento=document.getElementById(`flayer${index}`);
-                    const nuevaImagen=document.createElement('img');
-                    nuevaImagen.classList="img-fluid d-block h-100 bordeRedondeado";
-                    nuevaImagen.src=`../imagenes/${element.url_mul}.${element.ext_mul}`;
-                    elemento.appendChild(nuevaImagen);
-                }else{
-                    const nuevaDivision=document.createElement('div');
-                    nuevaDivision.classList="carousel-item h-100 cuadrado";
-                    nuevaDivision.dataset.bsInterval=intervalo;
-                    nuevaDivision.id=`cuadrado${index}`;
-                    cuadrado.appendChild(nuevaDivision);
-                    const elemento=document.getElementById(`cuadrado${index}`);
-                    const nuevaImagen=document.createElement('img');
-                    nuevaImagen.classList="img-fluid bordeRedondeado mx-auto d-block h-100";
-                    nuevaImagen.src=`../imagenes/${element.url_mul}.${element.ext_mul}`;
-                    elemento.appendChild(nuevaImagen);
-                };
+            intervalo=element.duracion;
+            if(element.ubicacion==='flayer'){
+                const nuevaDivision=document.createElement('div');
+                nuevaDivision.classList="carousel-item imgCarrusel flayer";
+                nuevaDivision.dataset.bsInterval=intervalo;
+                nuevaDivision.id=`flayer${index}`;
+                flayer.appendChild(nuevaDivision);
+                const elemento=document.getElementById(`flayer${index}`);
+                const nuevaImagen=document.createElement('img');
+                nuevaImagen.classList="img-fluid d-block h-100 bordeRedondeado";
+                nuevaImagen.src=`../imagenes/${element.nombre}.${element.extension}`;
+                elemento.appendChild(nuevaImagen);
+            }else{
+                const nuevaDivision=document.createElement('div');
+                nuevaDivision.classList="carousel-item h-100 cuadrado";
+                nuevaDivision.dataset.bsInterval=intervalo;
+                nuevaDivision.id=`cuadrado${index}`;
+                cuadrado.appendChild(nuevaDivision);
+                const elemento=document.getElementById(`cuadrado${index}`);
+                const nuevaImagen=document.createElement('img');
+                nuevaImagen.classList="img-fluid bordeRedondeado mx-auto d-block h-100";
+                nuevaImagen.src=`../imagenes/${element.nombre}.${element.extension}`;
+                elemento.appendChild(nuevaImagen);
             };
+            
         })
     })
     .catch(error=>{console.error(`Atención ${error}`)})
