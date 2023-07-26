@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
 $database = 'cartelera';
-$user = 'postgres';
-$password = '240296';
+$user = 'supervisor';
+$password = 'imagenes1234';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $ubicacion = $_POST["ubicacion"];
