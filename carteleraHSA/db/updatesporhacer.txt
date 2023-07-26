@@ -1,3 +1,8 @@
+CAMBIAR EL NOMBRE DEL CONSULTORIO 7 A ODONTOLOGIA, ASI COMO SU AREA DE CONSULTORIOS1 A ODONTOLOGIA
+UPDATE consultorio
+   SET num_con='odontología', are_con='odontologia'
+ WHERE cod_con='192.168.75.132';
+ 
 CAMBIAR EL NOMBRE DE CONSULTORIO 6 A AREA DE ECOGRAFIA
 UPDATE consultorio
    SET num_con='ecografía'

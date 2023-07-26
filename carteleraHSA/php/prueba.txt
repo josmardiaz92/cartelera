@@ -1,2 +1,0 @@
-paciente: Josmar, consultorio: 192.168.75.184
-paciente: gaby, consultorio: 192.168.75.184
