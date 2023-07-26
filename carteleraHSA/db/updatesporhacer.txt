@@ -43,3 +43,68 @@ AGREGAR VISTAS:
   WHERE t.fec_tur::date = 'now'::text::date and
   c.are_con = 'rayos x';
 
+  --vista de archivos multimedia en el area de consultorios1
+  --multimediacon1
+  SELECT url_mul as nombre, ext_mul as extension, ubi_mul as ubicacion, are_mul as area, dur_mul as duracion
+  FROM multimedia
+  where
+  est_mul='A' and
+  are_mul in ('consultorios1','general');
+
+  --vista de archivos multimedia en el area de consultorios2
+  --multimediacon2
+  SELECT url_mul as nombre, ext_mul as extension, ubi_mul as ubicacion, are_mul as area, dur_mul as duracion
+  FROM multimedia
+  where
+  est_mul='A' and
+  are_mul in ('consultorios2','general');
+
+  --vista de archivos multimedia en el area de consultorios3
+  --multimediacon3
+  SELECT url_mul as nombre, ext_mul as extension, ubi_mul as ubicacion, are_mul as area, dur_mul as duracion
+  FROM multimedia
+  where
+  est_mul='A' and
+  are_mul in ('consultorios3','general');
+
+  --vista de archivos multimedia en el area de laboratorio
+  --multimedialab
+  SELECT url_mul as nombre, ext_mul as extension, ubi_mul as ubicacion, are_mul as area, dur_mul as duracion
+  FROM multimedia
+  where
+  est_mul='A' and
+  are_mul in ('laboratorio','general');
+  
+  --vista de archivos multimedia en el area de general
+  --multimediagen
+  SELECT url_mul as nombre, ext_mul as extension, ubi_mul as ubicacion, are_mul as area, dur_mul as duracion
+  FROM multimedia
+  where
+  est_mul='A' and
+  are_mul in ('general','general');
+  
+  --vista de archivos multimedia en el area de imageniologia
+  --multimediaima
+  SELECT url_mul as nombre, ext_mul as extension, ubi_mul as ubicacion, are_mul as area, dur_mul as duracion
+  FROM multimedia
+  where
+  est_mul='A' and
+  are_mul in ('imageniologia','general');
+
+  --vista de archivos multimedia en el area de rayos x
+  --multimediaray
+  SELECT url_mul as nombre, ext_mul as extension, ubi_mul as ubicacion, are_mul as area, dur_mul as duracion
+  FROM multimedia
+  where
+  est_mul='A' and
+  are_mul in ('rayos x','general');
+
+  --vista de archivos multimedia en el area de odontologia
+  --multimediaodo
+  SELECT url_mul as nombre, ext_mul as extension, ubi_mul as ubicacion, are_mul as area, dur_mul as duracion
+  FROM multimedia
+  where
+  est_mul='A' and
+  are_mul in ('odontologia','general');
+
+
