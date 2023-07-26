@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../estilos/css-bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../estilos/css-personal/vistas.css">
+    <link rel="stylesheet" href="../estilos/css-personal/tranciciones.css">
+    <link rel="stylesheet" href="../estilos/css-iconos/css/all.min.css">
+    <script src="../js/jquery-3.7.0.min.js"></script>
+    <title>Manejo de Turnos</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row mt-1 d-flex justify-content-center align-items-center">
+            <div class="col-2 bordeIzquierdoRedondeado" id="logo">
+                <img src="../imagenes/logovertical.png" class="img-fluid logo mx-auto d-block">
+            </div>
+            <div class="col-9 bordeDerechoRedondeado turnoActual HSA transicion-difuminado d-none no-ver" id="turnoActual">
+                <div class="row encabezado d-flex justify-content-center fs-2 fw-bolder pt-2 text-center text-uppercase text-dark">
+                    <div class="col-5">
+                        paciente
+                    </div>
+                    <div class="col-5">
+                        en
+                    </div>
+                </div>
+                <hr class="mt-0 mx-3">
+                <div class="row cuerpo d-flex justify-content-center fs-1 text-center text-capitalize text-dark">
+                    <div class="col-5">
+                        <span id="turnoPaciente"></span>
+                    </div>
+                    <div class="col-5">
+                        <span id="turnoArea"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9 bordeRedondeado entreTurnos transicion-difuminado ver" id="entreTurnos">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-10 contenedor-carrusel d-flex justify-content-center">
+                        <div id="carruselEntreTurnos" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner" id="flayer">
+                                <div data-bs-interval="1" class="carousel-item active imgCarrusel">
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 d-flex justify-content-center contenedor-body">
+            <div class="col-11 bordeRedondeado HSA">
+                <div class="row d-flex justify-content-evenly">
+                    <div class="col-7 d-flex justify-content-center p-0">
+                        <div class="col contenedor contenedor-carrusel m-0 p-0 d-flex justify-content-center bordeDerechoRedondeado">
+                            <div id="carruselmultimedia" class="carousel slide h-100" data-bs-ride="carousel">
+                                <div class="carousel-inner h-100" id="cuadrado">
+                                    <div class="carousel-item active h-100" data-bs-interval="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 HSA bordeRedondeado mt-1">
+                        <div class="row mt-2">
+                            <div class="table-responsive">
+                                <table class="table text-capitalize">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-dark border-0 text-center fs-3">paciente</th>
+                                            <th class="text-dark border-0 text-center fs-3">en</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaTurnos">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <div class="col-12 d-flex justify-content-center HSA bordeRedondeado col-marquee">
+                <div class="marquee">
+                    <span class="text-dark fs-1">
+                        Bienvenidos a la Fundación Hospital San Antonio de Táriba.
+                        <span class="text-dark fs-1" id="tasaDia">
+                        </span>
+                        <span>
+                            Siguenos en nuestras redes sociales:
+                            <i class="fa-brands fa-instagram" style="color: #000000;"></i>
+                            @hosantariba
+                        </span>
+                    </span> 
+                </div>
+            </div>
+        </div>
+        <div id="contenedorAudio">
+            
+        </div>
+    </div>
+    
+    <script src="../js/js-bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../js/mostrarRayosX.js"></script>
+    <script src="../js/mostrarTasa.js"></script>
+    <script src="../js/tooltip.js"></script>
+</body>
+</html>
