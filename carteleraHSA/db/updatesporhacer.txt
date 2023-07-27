@@ -112,4 +112,23 @@ AGREGAR VISTAS:
   est_mul='A' and
   are_mul in ('odontologia','general');
 
+  CAMBIAR EL ESTADO DE LOS FAYERS QUE TENIA ANTES
+  UPDATE multimedia
+   SET est_mul='I'
+ WHERE ubi_mul='flayer';
+
+ AGREGAR NUEVOS FLAYERS A LA BASE DE DATOS
+ INSERT INTO multimedia(
+            url_mul, ext_mul, ubi_mul, are_mul, dur_mul)
+    VALUES ('promocioncristo (1)','png','flayer','general',3000),
+    ('promocioncristo (2)','png','flayer','general',3000),
+    ('promocioncristo (3)','png','flayer','general',3000),
+    ('promocioncristo (4)','png','flayer','general',3000),
+    ('promocioncristo (5)','png','flayer','general',3000),
+    ('promocioncristo (6)','png','flayer','general',3000),
+    ('promocioncristo (7)','png','flayer','general',3000),
+    ('promocioncristo (8)','png','flayer','general',3000),
+    ('promocioncristo (9)','png','flayer','general',3000),
+    ('promocioncristo (10)','png','flayer','general',3000);
+
 
