@@ -47,9 +47,9 @@ async function consultarPacientes(){
                 const logo=document.getElementById('logo');
 
                 //Todo provisional
-                const contenedorAudio = pinProvisional(turno, entreturno, logo);
+                //const contenedorAudio = pinProvisional(turno, entreturno, logo);
                 
-                /* let textoaVoz='';
+                let textoaVoz='';
                 if(isNaN(parseInt(arregloJson[0].consultorio))){
                     textoaVoz = `Paciente ${arregloJson[0].paciente}, será atendido en el  área de ${arregloJson[0].consultorio}`;
                 }else{
@@ -60,7 +60,7 @@ async function consultarPacientes(){
                     aparecer(turno, entreturno, logo);
                     let utterance = new SpeechSynthesisUtterance(textoaVoz);
                     speechSynthesis.speak(utterance);
-                } */
+                }
                 setTimeout(() => {
                     contenedorAudio.innerHTML='';
                     desaparecer(turno, entreturno, logo);
