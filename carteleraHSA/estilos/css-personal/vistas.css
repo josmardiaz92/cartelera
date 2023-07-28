@@ -59,3 +59,31 @@ body {
     object-fit: cover;
 }
 
+.img-navbar {
+    height: 50px;
+}
+
+/* Estilo para la imagen */
+.img-interfaz {
+    position: relative;
+    width: 100%;
+    padding-bottom: 5%; /* Proporción 16:9 (ejemplo, ajusta según tus necesidades) */
+    background-image: url('../../imagenes/interfaz.jpeg');
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 0;
+    transition: opacity 0.5s;
+}
+
+/* Estilo para ocultar la imagen al hacer scroll */
+.img-interfaz.scrolled {
+    display: 0;
+}
+
+.nav-item:hover {
+    scale: 1.2;
+}
+
+.muestra {
+    height: 80px;
+}
