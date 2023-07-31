@@ -1,0 +1,86 @@
+@font-face{
+	font-family: 'personal';
+	src: url('http://localhost/cartelera/carteleraHSA/fuentes/Montserrat-VariableFont_wght.ttf');
+}
+
+*{
+	font-family: 'personal';
+
+}
+
+body {
+    background-color: rgb(144, 204, 238);
+}
+
+.HSA {
+    background-color: rgba(255, 255, 255, 0.2); /* Cambia el valor de 0.5 según tu preferencia */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(25px);
+}
+
+.bordeRedondeado {
+    border-radius: 20px;
+}
+
+.bordeDerechoRedondeado {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.bordeIzquierdoRedondeado {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.imgCarrusel {
+    border-radius: 10px;
+    height: 100px;
+}
+
+.logo {
+    border-radius: 10px;
+    height: 200px;
+}
+
+.turnoActual {
+    height: 200px;
+}
+
+.contenedor {
+    z-index: -1;
+    height: 550px;
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.img-navbar {
+    height: 50px;
+}
+
+/* Estilo para la imagen */
+.img-interfaz {
+    position: relative;
+    width: 100%;
+    padding-bottom: 5%; /* Proporción 16:9 (ejemplo, ajusta según tus necesidades) */
+    background-image: url('../../imagenes/interfaz.jpeg');
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 0;
+    transition: opacity 0.5s;
+}
+
+/* Estilo para ocultar la imagen al hacer scroll */
+.img-interfaz.scrolled {
+    display: 0;
+}
+
+.nav-item:hover {
+    scale: 1.2;
+}
+
+.muestra {
+    height: 80px;
+}
