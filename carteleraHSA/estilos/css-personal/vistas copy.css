@@ -9,7 +9,7 @@
 }
 
 body {
-    background-color: rgb(25, 151, 224);
+    background-color: rgb(255, 253, 253);
     background-image: url('../../imagenes/Fondo.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -51,7 +51,7 @@ body {
 
 .contenedor {
     z-index: -1;
-    height: 550px;
+    height: 750px;
 }
 
 .carousel-item img {
