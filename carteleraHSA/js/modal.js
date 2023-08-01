@@ -7,7 +7,6 @@ modal.addEventListener('show.bs.modal', function (event) {
     var button = event.relatedTarget
     // Extraer información de los atributos data-bs-*
     var codigoMul = button.getAttribute('data-bs-whatever');
-    console.log(codigoMul)
     consultarUna(codigoMul);
     
 });
@@ -54,6 +53,7 @@ async function consultarUna(codigo){
   .then(imagenes=>{
     imagenes.forEach(imagen=>{
       if(imagen.cod_mul==codigo){
+        const btnEditar=modal.querySelector('#editar');
         const modalNombre = modal.querySelector('#url_mul');
         modalNombre.value = imagen.url_mul;
 
@@ -61,13 +61,15 @@ async function consultarUna(codigo){
         modalExtension.value=imagen.ext_mul;
 
         const modalSwitch=modal.querySelector('#switch');
-        const modalSwitchLabel=modal.querySelector('#switch-label');
         const modalMuestraImagen=modal.querySelector('#modalImagen');
-        modalSwitchLabel.innerHTML='Quiero cambiar la imagen';
         modalMuestraImagen.innerHTML=`<img src="../imagenes/${imagen.url_mul}.${imagen.ext_mul}" alt="" srcset="" class="muestra-modal img-fluid">`;
           modalSwitch.addEventListener('change',function(){
             if(this.checked){
-              modalSwitchLabel.innerHTML='No quiero cambiar la imagen';
+              modalUbicacion.disabled=false;
+              modalArea.disabled=false;
+              modalDuracion.readOnly=false;
+              modalstatus.disabled=false;
+              btnEditar.disabled=false;
               modalMuestraImagen.innerHTML=`<div>
                                               <label for="formFile" class="form-label text-capitalize">
                                                   elija una nueva imagen
@@ -78,15 +80,19 @@ async function consultarUna(codigo){
                                               <input class="form-control" type="file" id="formFile">
                                           </div>`;
                 const fileInput = document.getElementById("formFile");
-                const imagePreviewContainer = document.getElementById("preview");
                 const imagePreview = document.getElementById("imagePreview");
                 fileInput.addEventListener("change", function() {
                   const file = this.files[0];
+                   // Obtener el nombre del archivo y la extensión
+                  const nombreNuevo = file.name.split('.').slice(0, -1).join('.');
+                  const extensionNueva = file.name.split('.').pop().toLowerCase(); // Obtener la extensión del archivo
                   if (file) {
                     const reader = new FileReader();
                     reader.addEventListener("load", function() {
                       imagePreview.src = reader.result;
                       imagePreview.classList.remove('d-none');
+                      modalNombre.value=nombreNuevo;
+                      modalExtension.value=extensionNueva;
                     });
                     reader.readAsDataURL(file);
                   } else {
@@ -95,7 +101,11 @@ async function consultarUna(codigo){
                   }
                 });
             }else{
-              modalSwitchLabel.innerHTML='Quiero cambiar la imagen';
+              modalUbicacion.disabled=true;
+              modalArea.disabled=true;
+              modalDuracion.readOnly=true;
+              modalstatus.disabled=true;
+              btnEditar.disabled=true;
               modalMuestraImagen.innerHTML=`<img src="../imagenes/${imagen.url_mul}.${imagen.ext_mul}" alt="" srcset="" class="muestra-modal img-fluid">`;
             }
           })

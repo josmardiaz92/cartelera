@@ -93,3 +93,7 @@ body {
 .muestra-modal {
     height: 100px;
 }
+
+.modal-header {
+    height: 70px;
+}
