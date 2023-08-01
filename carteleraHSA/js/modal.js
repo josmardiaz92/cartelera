@@ -70,6 +70,7 @@ async function consultarUna(codigo){
               modalDuracion.readOnly=false;
               modalstatus.disabled=false;
               btnEditar.disabled=false;
+              btnEditar.classList.remove('d-none');
               modalMuestraImagen.innerHTML=`<div>
                                               <label for="formFile" class="form-label text-capitalize">
                                                   elija una nueva imagen
@@ -106,6 +107,7 @@ async function consultarUna(codigo){
               modalDuracion.readOnly=true;
               modalstatus.disabled=true;
               btnEditar.disabled=true;
+              btnEditar.classList.add('d-none');
               modalMuestraImagen.innerHTML=`<img src="../imagenes/${imagen.url_mul}.${imagen.ext_mul}" alt="" srcset="" class="muestra-modal img-fluid">`;
             }
           })
