@@ -1,6 +1,5 @@
 let rutaImagenes='../php/consultarImagenesGen.php';
 let intervalo=0;
-const areaVisual='general';
 
 async function consultarImagenes(){
     fetch(rutaImagenes)

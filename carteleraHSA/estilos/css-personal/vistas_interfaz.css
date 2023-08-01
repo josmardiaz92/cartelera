@@ -1,4 +1,4 @@
-@font-face{
+/* @font-face{
 	font-family: 'personal';
 	src: url('http://localhost/cartelera/carteleraHSA/fuentes/Montserrat-VariableFont_wght.ttf');
 }
@@ -6,7 +6,7 @@
 *{
 	font-family: 'personal';
 
-}
+} */
 
 body {
     background-color: rgb(144, 204, 238);
@@ -20,6 +20,11 @@ body {
 
 .bordeRedondeado {
     border-radius: 20px;
+}
+
+.bordeSuperiorRedondeado {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 }
 
 .bordeDerechoRedondeado {
@@ -85,3 +90,6 @@ body {
     height: 80px;
 }
 
+.muestra-modal {
+    height: 100px;
+}
