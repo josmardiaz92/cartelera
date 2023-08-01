@@ -38,7 +38,7 @@ async function consultarImagenes(){
                                       </td>
                                       <td class="${element.est_mul}">${status}</td>
                                       <td id="ver${index}">
-                                        <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modal" data-bs-whatever=${element.cod_mul}><i class="fa-solid fa-eye" style="color: #001A6F" data-bs-toggle="tooltip" data-bs-placement="left" title="Ver"></i></button>
+                                        <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#modal" data-bs-whatever=${element.cod_mul}><i class="fa-solid fa-eye" style="color: #001A6F" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver"></i></button>
                                       </td>
                                   </tr>`
           })
