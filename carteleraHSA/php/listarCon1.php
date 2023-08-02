@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
 $database = 'cartelera';
-$user = 'postgres';
-$password = '240296';
+$user = 'supervisor';
+$password = 'imagenes1234';
 
 try {
     $connection = new PDO("pgsql:host=$host;dbname=$database", $user, $password);

@@ -47,6 +47,33 @@ async function consultarImagenes(){
     .catch(error=>{console.error(`Atención ${error}`)})
 }
 
+function editarImagen(ubi,are,dur,est,fil,cod){
+  const ubicacion = ubi.value;
+  const area = are.value;
+  const duracion=parseInt(dur.value)*1000;
+  const estatus=est.value;
+
+  const formData = new FormData();
+  formData.append("imagen", fil);
+  formData.append("ubicacion", ubicacion);
+  formData.append("area", area);
+  formData.append("duracion", duracion);
+  formData.append("estatus", estatus);
+  formData.append("codigo", cod)
+
+  fetch("../php/editarImagenes.php", {
+      method: "POST",
+      body: formData
+  })
+  .then(response => response.text())
+  .then(message => {
+      alert(message);
+  })
+  .catch(error => {
+      console.error("Hubo un error al subir las imágenes:", error);
+  });
+}
+
 async function consultarUna(codigo){
   fetch(rutaImagenes)
   .then(resp=>resp.json())
@@ -55,13 +82,16 @@ async function consultarUna(codigo){
       if(imagen.cod_mul==codigo){
         const btnEditar=modal.querySelector('#editar');
         const modalNombre = modal.querySelector('#url_mul');
-        modalNombre.value = imagen.url_mul;
-
         const modalExtension=modal.querySelector('#ext_mul');
-        modalExtension.value=imagen.ext_mul;
-
         const modalSwitch=modal.querySelector('#switch');
         const modalMuestraImagen=modal.querySelector('#modalImagen');
+        const modalUbicacion=modal.querySelector('#ubi_mul');
+        const modalArea=modal.querySelector('#are_mul');
+        const modalDuracion=modal.querySelector('#dur_mul');
+        const modalstatus=modal.querySelector('#est_mul');
+
+        modalNombre.value = imagen.url_mul;
+        modalExtension.value=imagen.ext_mul;
         modalMuestraImagen.innerHTML=`<img src="../imagenes/${imagen.url_mul}.${imagen.ext_mul}" alt="" srcset="" class="muestra-modal img-fluid">`;
           modalSwitch.addEventListener('change',function(){
             if(this.checked){
@@ -82,12 +112,13 @@ async function consultarUna(codigo){
                                           </div>`;
                 const fileInput = document.getElementById("formFile");
                 const imagePreview = document.getElementById("imagePreview");
+                var files='';
                 fileInput.addEventListener("change", function() {
-                  const file = this.files[0];
+                  files=this.files[0];
                    // Obtener el nombre del archivo y la extensión
-                  const nombreNuevo = file.name.split('.').slice(0, -1).join('.');
-                  const extensionNueva = file.name.split('.').pop().toLowerCase(); // Obtener la extensión del archivo
-                  if (file) {
+                  const nombreNuevo = files.name.split('.').slice(0, -1).join('.');
+                  const extensionNueva = files.name.split('.').pop().toLowerCase(); // Obtener la extensión del archivo
+                  if (files) {
                     const reader = new FileReader();
                     reader.addEventListener("load", function() {
                       imagePreview.src = reader.result;
@@ -95,12 +126,17 @@ async function consultarUna(codigo){
                       modalNombre.value=nombreNuevo;
                       modalExtension.value=extensionNueva;
                     });
-                    reader.readAsDataURL(file);
+                    reader.readAsDataURL(files);
                   } else {
                     imagePreview.classList.add('d-none');
                     imagePreview.src = "#";
                   }
+                  btnEditar.addEventListener('click', () => {
+                    editarImagen(modalNombre,modalExtension,modalUbicacion,modalArea,modalDuracion,modalstatus,files,codigo)
+                  });
                 });
+                
+
             }else{
               modalUbicacion.disabled=true;
               modalArea.disabled=true;
@@ -111,22 +147,16 @@ async function consultarUna(codigo){
               modalMuestraImagen.innerHTML=`<img src="../imagenes/${imagen.url_mul}.${imagen.ext_mul}" alt="" srcset="" class="muestra-modal img-fluid">`;
             }
           })
-        
-        const modalUbicacion=modal.querySelector('#ubi_mul');
         modalUbicacion.value=imagen.ubi_mul;
-
-        const modalArea=modal.querySelector('#are_mul');
         modalArea.value=imagen.are_mul;
-
-        const modalDuracion=modal.querySelector('#dur_mul');
         modalDuracion.value=`${(imagen.dur_mul)/1000} Segundos`;
-
-        const modalstatus=modal.querySelector('#est_mul');
         modalstatus.value=imagen.est_mul;
       }
     })
   })
   .catch(error=>{console.error(`Atención ${error}`)})
 }
+
+
 
 consultarImagenes();
