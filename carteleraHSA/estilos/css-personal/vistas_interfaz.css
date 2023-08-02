@@ -97,3 +97,7 @@ body {
 .modal-header {
     height: 70px;
 }
+
+.nav-link:hover {
+    cursor: pointer;
+}

@@ -1,3 +1,4 @@
+
 const rutaImagenes='../php/listarCon1.php';
 const modal = document.getElementById('modal');
 
@@ -16,6 +17,7 @@ async function consultarImagenes(){
     .then(respuesta=>respuesta.json())
     .then(arregloJsonImagenes=>{
       let status='';
+      /* cuerpoTabla.innerHTML=''; */
         arregloJsonImagenes.forEach((element,index)=>{
           //*Aca se le da un valor visible al status
           switch (element.est_mul) {
@@ -47,7 +49,8 @@ async function consultarImagenes(){
     .catch(error=>{console.error(`Atención ${error}`)})
 }
 
-function editarImagen(ubi,are,dur,est,fil,cod){
+function editarImagen(ubi,are,dur,est,fil,cod,rut){
+  
   const ubicacion = ubi.value;
   const area = are.value;
   const duracion=parseInt(dur.value)*1000;
@@ -61,16 +64,22 @@ function editarImagen(ubi,are,dur,est,fil,cod){
   formData.append("estatus", estatus);
   formData.append("codigo", cod)
 
-  fetch("../php/editarImagenes.php", {
+  fetch(rut, {
       method: "POST",
       body: formData
   })
-  .then(response => response.text())
-  .then(message => {
-      alert(message);
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert('Actualizacion exitosa.');
+      location.reload();
+      
+    } else {
+      alert('Error al actualizar');
+    }
   })
   .catch(error => {
-      console.error("Hubo un error al subir las imágenes:", error);
+    console.error("Hubo un error al subir las imágenes:", error);
   });
 }
 
@@ -115,10 +124,10 @@ async function consultarUna(codigo){
                 var files='';
                 fileInput.addEventListener("change", function() {
                   files=this.files[0];
-                   // Obtener el nombre del archivo y la extensión
-                  const nombreNuevo = files.name.split('.').slice(0, -1).join('.');
-                  const extensionNueva = files.name.split('.').pop().toLowerCase(); // Obtener la extensión del archivo
                   if (files) {
+                    // Obtener el nombre del archivo y la extensión
+                    const nombreNuevo = files.name.split('.').slice(0, -1).join('.');
+                    const extensionNueva = files.name.split('.').pop().toLowerCase(); // Obtener la extensión del archivo
                     const reader = new FileReader();
                     reader.addEventListener("load", function() {
                       imagePreview.src = reader.result;
@@ -130,13 +139,20 @@ async function consultarUna(codigo){
                   } else {
                     imagePreview.classList.add('d-none');
                     imagePreview.src = "#";
+                    modalNombre.value = imagen.url_mul;
+                    modalExtension.value=imagen.ext_mul;
+                    files=''
                   }
-                  btnEditar.addEventListener('click', () => {
-                    editarImagen(modalNombre,modalExtension,modalUbicacion,modalArea,modalDuracion,modalstatus,files,codigo)
-                  });
                 });
-                
-
+                btnEditar.addEventListener('click', () => {
+                  if(files){
+                    let ruta='../php/editarYsubirImagen.php';
+                    editarImagen(modalUbicacion,modalArea,modalDuracion,modalstatus,files,codigo,ruta);
+                  }else{
+                    let ruta='../php/editarImagen.php';
+                    editarImagen(modalUbicacion,modalArea,modalDuracion,modalstatus,files,codigo,ruta);
+                  }
+                });
             }else{
               modalUbicacion.disabled=true;
               modalArea.disabled=true;

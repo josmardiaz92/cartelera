@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $estatus = $_POST["estatus"];
     $codigo=$_POST["codigo"];
 
-    $targetDir = "../imagenes/prueba/"; // Directorio donde se guardarán las imágenes subidas
+    $targetDir = "../imagenes/"; // Directorio donde se guardarán las imágenes subidas
     $allowedExtensions = array("jpg", "jpeg", "png", "gif");
 
     $imageFile = $_FILES["imagen"]["tmp_name"];
@@ -37,11 +37,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt->bindParam(':duracion', $duracion);
             $stmt->bindParam(':estatus', $estatus);
             $stmt->bindParam(':codigo', $codigo);
-            $stmt->execute();
+            $result = $stmt->execute();
 
-            echo "La imagen se subió correctamente y la información se guardó en la base de datos.";
+            // Crear un objeto que contenga la información a enviar
+            $response = array("success" => $result);
+            echo json_encode($response);
         } else {
-            echo "Hubo un error al subir la imagen.";
+            // En caso de error, también se envía un objeto JSON
+            $response = array("success" => false);
+            echo json_encode($response);
         }
     } else {
         echo "Formato de archivo no válido. Se permiten solo imágenes en formato JPG, JPEG, PNG y GIF.";
