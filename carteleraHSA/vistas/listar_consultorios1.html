@@ -12,6 +12,61 @@
 </head>
 <body>
     <input type="text" value="listarCon1" class="d-none">
+    <div class="position-absolute p-3 campoAlertas col-sm-12 col-md-6 col-lg-3">
+        <div class="container-fluid d-none" id="alerta">
+            <div class="row">
+                <div class="col-12 alert alert-warning" role="alert">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12">
+                            <strong class="text-danger d-flex justify-content-center">
+                            </strong>
+                        </div>
+                        <div class="col-12">
+                                <p class="my-3 text-dark text-capitalize text-center" id="textoAlerta">
+
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid d-none" id="alerta2">
+            <div class="row">
+                <div class="col-12 alert alert-danger" role="alert">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12">
+                            <strong class="text-danger d-flex justify-content-center">
+                                ERROR
+                            </strong>
+                        </div>
+                        <div class="col-12">
+                                <p class="my-3 text-dark text-capitalize text-center" id="textoAlerta2">
+
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid d-none" id="alerta3">
+            <div class="row">
+                <div class="col-12 alert alert-success" role="alert">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12">
+                            <strong class="text-success d-flex justify-content-center">
+                                ¡EXCELENTE!
+                            </strong>
+                        </div>
+                        <div class="col-12">
+                                <p class="my-3 text-dark text-capitalize text-center" id="textoAlerta3">
+
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="contenedor-modal" id="contenedor-modal-agregar">
         <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -31,24 +86,25 @@
                                 <div id="preview" class="d-flex justify-content-center mb-2">
                                     <img id="imagePreview" src="#" alt="Vista previa de la imagen" class="muestra-modal img-fluid d-none">
                                 </div>
-                                <input class="form-control" type="file" id="imagen" accept="imagen/*" multiple>
+                                <input class="form-control casilla casilla" type="file" id="imagen" accept="imagen/*" multiple>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <label for="ubicacion" class="col-form-label text-capitalize">
                                         Donde quiere que aparezca:
                                     </label>
-                                    <select name="ubicacion" id="ubicacion" class="text-capitalize form-select" required>
+                                    <select name="ubicacion" id="ubicacion" class="text-capitalize form-select validarInsert invalidInsert casilla" required>
                                         <option value="">Seleccione...</option>
                                         <option value="cuadrado">abajo</option>
                                         <option value="flayer">arriba</option>
                                     </select>
+                                    <span></span>
                                 </div>
                                 <div class="col-6">
                                     <label for="area" class="col-form-label text-capitalize">
                                         en que área:
                                     </label>
-                                    <select name="area" id="area" class="text-capitalize form-select" required>
+                                    <select name="area" id="area" class="text-capitalize form-select validarInsert invalidInsert casilla" required>
                                         <option value="">Seleccione...</option>
                                         <option value="consultorios1">consultorios1</option>
                                         <option value="consultorios2">consultorios2</option>
@@ -58,17 +114,18 @@
                                         <option value="rayos x">rayos x</option>
                                         <option value="general">general</option>
                                     </select>
+                                    <span></span>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="duracion" class="col-form-label text-capitalize">
                                     Duracion en pantalla (en segundos):</label>
-                                <input type="number" class="form-control" id="duracion" value="5">
+                                <input type="number" class="form-control casilla" id="duracion" value="5">
                             </div>        
                         </form>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-primary" id="insertImagen">Agregar</button>
+                        <button type="button" class="btn btn-primary" id="insertImagen" disabled>Agregar</button>
                     </div>
                 </div>
             </div>
@@ -111,17 +168,18 @@
                                     <label for="ubi_mul" class="col-form-label text-capitalize">
                                         Donde quiere que aparezca:
                                     </label>
-                                    <select name="ubi_mul" id="ubi_mul" class="text-capitalize form-select" disabled>
+                                    <select name="ubi_mul" id="ubi_mul" class="text-capitalize form-select validarUpdate invalidUpdate" disabled>
                                         <option value="">Seleccione...</option>
                                         <option value="cuadrado">abajo</option>
                                         <option value="flayer">arriba</option>
                                     </select>
+                                    <span></span>
                                 </div>
                                 <div class="col-6">
                                     <label for="are_mul" class="col-form-label text-capitalize">
                                         en que área:
                                     </label>
-                                    <select name="are_mul" id="are_mul" class="text-capitalize form-select" disabled>
+                                    <select name="are_mul" id="are_mul" class="text-capitalize form-select validarUpdate invalidUpdate" disabled>
                                         <option value="">Seleccione...</option>
                                         <option value="consultorios1">consultorios1</option>
                                         <option value="consultorios2">consultorios2</option>
@@ -131,6 +189,7 @@
                                         <option value="rayos x">rayos x</option>
                                         <option value="general">general</option>
                                     </select>
+                                    <span></span>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -143,11 +202,12 @@
                                     <label for="est_mul" class="col-form-label text-capitalize">
                                         Estado:
                                     </label>
-                                    <select name="est_mul" id="est_mul" class="text-capitalize form-select" disabled>
+                                    <select name="est_mul" id="est_mul" class="text-capitalize form-select validarUpdate invalidUpdate" disabled>
                                         <option value="">Seleccione...</option>
                                         <option value="A">activo</option>
                                         <option value="I">Inactivo</option>
                                     </select>
+                                    <span></span>
                                     </div>
                             </div>        
                         </form>
@@ -234,5 +294,7 @@
     <script src="../js/tooltip.js"></script>
     <script src="../js/consultar_imagenes.js"></script>
     <script src="../js/insertar_imagen.js"></script>
+    <script src="../js/validar_insert.js"></script>
+    <script src="../js/validar_update.js"></script>
 </body>
 </html>

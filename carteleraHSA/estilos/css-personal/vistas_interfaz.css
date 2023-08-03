@@ -101,3 +101,37 @@ body {
 .nav-link:hover {
     cursor: pointer;
 }
+
+.casilla{	
+    border:1px solid #c2c2c2 !important;
+    background: rgba(255,255,255, 0.2) !important;
+    color: #959595 !important;
+}
+
+.casilla:focus{	
+    border: 1px solid #557dff !important;
+    background: rgba(255,255,255, 0.2) !important;
+    color: #000 !important;
+}
+
+.casilla:hover{	
+    border: 1px solid #4f5972 !important;
+    background: rgba(255,255,255, 0.2) !important;
+    color: #4f5972 !important;
+}
+
+.invalida{
+    border: solid 1px red;
+    box-shadow: 0 0 10px red;
+}
+
+.error{
+    color:red;
+    display:block;
+}
+
+.campoAlertas{
+    top: 20%;
+    right: 0px;
+    /* width: 400px; */
+}

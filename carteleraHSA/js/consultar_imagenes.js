@@ -109,6 +109,10 @@ async function consultarUna(codigo){
               modalDuracion.readOnly=false;
               modalstatus.disabled=false;
               btnEditar.disabled=false;
+              modalUbicacion.classList.add('casilla');
+              modalArea.classList.add('casilla');
+              modalDuracion.classList.add('casilla');
+              modalstatus.classList.add('casilla');
               btnEditar.classList.remove('d-none');
               modalMuestraImagen.innerHTML=`<div>
                                               <label for="formFile" class="form-label text-capitalize">
@@ -159,6 +163,10 @@ async function consultarUna(codigo){
               modalDuracion.readOnly=true;
               modalstatus.disabled=true;
               btnEditar.disabled=true;
+              modalUbicacion.classList.remove('casilla');
+              modalArea.classList.remove('casilla');
+              modalDuracion.classList.remove('casilla');
+              modalstatus.classList.remove('casilla');
               btnEditar.classList.add('d-none');
               modalMuestraImagen.innerHTML=`<img src="../imagenes/${imagen.url_mul}.${imagen.ext_mul}" alt="" srcset="" class="muestra-modal img-fluid">`;
             }
