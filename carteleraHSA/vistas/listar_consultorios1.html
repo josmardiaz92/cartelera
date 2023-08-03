@@ -12,6 +12,68 @@
 </head>
 <body>
     <input type="text" value="listarCon1" class="d-none">
+    <div class="contenedor-modal" id="contenedor-modal-agregar">
+        <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bordeRedondeado">
+                    <div class="modal-header bg-info bordeSuperiorRedondeado">
+                        <h5 class="modal-title text-capitalize" id="modalLabel">
+                            Agregar Archivos Multimedia
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div>
+                                <label for="imagen" class="form-label text-capitalize">
+                                    elija una o varias imagenes:
+                                </label>
+                                <div id="preview" class="d-flex justify-content-center mb-2">
+                                    <img id="imagePreview" src="#" alt="Vista previa de la imagen" class="muestra-modal img-fluid d-none">
+                                </div>
+                                <input class="form-control" type="file" id="imagen" accept="imagen/*" multiple>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label for="ubicacion" class="col-form-label text-capitalize">
+                                        Donde quiere que aparezca:
+                                    </label>
+                                    <select name="ubicacion" id="ubicacion" class="text-capitalize form-select" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="cuadrado">abajo</option>
+                                        <option value="flayer">arriba</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="area" class="col-form-label text-capitalize">
+                                        en que área:
+                                    </label>
+                                    <select name="area" id="area" class="text-capitalize form-select" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="consultorios1">consultorios1</option>
+                                        <option value="consultorios2">consultorios2</option>
+                                        <option value="consultorios3">consultorios3</option>
+                                        <option value="laboratorio">laboratorio</option>
+                                        <option value="imageniologia">imageniologia</option>
+                                        <option value="rayos x">rayos x</option>
+                                        <option value="general">general</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="duracion" class="col-form-label text-capitalize">
+                                    Duracion en pantalla (en segundos):</label>
+                                <input type="number" class="form-control" id="duracion" value="5">
+                            </div>        
+                        </form>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" id="insertImagen">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="contenedor-modal" id="contenedor-modal">
         <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -162,7 +224,7 @@
         <div class="pies" id="pies">
             <div class="row m-5 d-flex justify-content-center">
                 <div class="col-sm-12 col-md-10 col-lg-8 body-personal d-flex justify-content-center">
-                    <a role="button" class="btn btn-info" href="#">Agregar</a>
+                    <a role="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAgregar" data-bs-whatever='agregarImagen'>Agregar</a>
                 </div>
             </div>
         </div>
@@ -170,8 +232,7 @@
 	</div>     
     <script src="../js/js-bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../js/tooltip.js"></script>
-    <script src="../js/interfaz_imagenes.js"></script>
     <script src="../js/consultar_imagenes.js"></script>
-    <script src="../js/sesion.js"></script>
+    <script src="../js/insertar_imagen.js"></script>
 </body>
 </html>
