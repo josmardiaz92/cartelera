@@ -1,5 +1,5 @@
-
-const rutaImagenes='../php/listarCon1.php';
+const identificador=document.getElementById('identificador').value;
+const rutaImagenes=`../php/${identificador}.php`;
 const modal = document.getElementById('modal');
 
 
