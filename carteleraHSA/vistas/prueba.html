@@ -4,37 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../estilos/css-bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="../estilos/css-personal/vistas.css">
     <link rel="stylesheet" href="../estilos/css-personal/tranciciones.css">
     <link rel="stylesheet" href="../estilos/css-iconos/css/all.min.css">
     <script src="../js/jquery-3.7.0.min.js"></script>
     <title>Manejo de Turnos</title>
 </head>
 <body>
-    <form>
-        <input type="file" id="image" accept="image/*" multiple>
-        <label for="ubicacion">Ubicación:</label>
-        <select id="ubicacion">
-            <option value="cuadrado">Cuadrado</option>
-            <option value="flayer">Flayer</option>
-        </select>
-        <label for="area">Área:</label>
-        <select id="area">
-            <option value="consultorios1">Consultorios 1</option>
-            <option value="consultorios2">Consultorios 2</option>
-            <option value="consultorios3">Consultorios 3</option>
-            <option value="laboratorio">Laboratorio</option>
-            <option value="general">General</option>
-            <option value="imageniologia">Imageniología</option>
-            <option value="odontologia">Odontología</option>
-            <option value="rayosx">Rayos X</option>
-        </select>
-        <button type="button" onclick="uploadImages()">Subir Imágenes</button>
-    </form>
-    
+    <h1>Mi Reproductor de Música Secuencial</h1>
+
+    <!-- Botón para iniciar la reproducción -->
+    <button onclick="iniciarReproduccion()">Iniciar Reproducción</button>
+
+    <!-- Audios -->
+    <audio id="audio1" controls>
+        <source src="../tonos/17.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <audio id="audio2" controls>
+        <source src="../tonos/hangouts_message.ogg" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <audio id="audio3" controls>
+        <source src="../tonos/prueba.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        const audios = ["audio1", "audio2", "audio3"];
+        let currentAudio = 0;
+
+        function iniciarReproduccion() {
+            if (currentAudio >= audios.length) {
+                // Reiniciar si ya se reprodujeron todos los audios
+                currentAudio = 0;
+            }
+
+            const audioElement = document.getElementById(audios[currentAudio]);
+            audioElement.play();
+
+            audioElement.onended = function() {
+                // Cuando el audio actual termine, pasar al siguiente
+                currentAudio++;
+                iniciarReproduccion(); // Llamada recursiva para reproducir el siguiente audio
+            };
+        }
+
+        iniciarReproduccion()
+    </script>
     
     <script src="../js/js-bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../js/tooltip.js"></script>
-    <script src="../js/prueba.js"></script>
 </body>
 </html>
