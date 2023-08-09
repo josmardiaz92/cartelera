@@ -1,0 +1,3 @@
+ALTER TABLE cambio
+    ADD COLUMN res_cam character varying(50) DEFAULT 'sistema';
+COMMENT ON COLUMN cambio.res_cam IS 'responsable de subir la tasa';

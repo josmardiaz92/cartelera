@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../estilos/css-bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../estilos/css-personal/vistas_interfaz.css">
+    <link rel="stylesheet" href="../estilos/css-personal/tranciciones.css">
+    <link rel="stylesheet" href="../estilos/css-iconos/css/all.min.css">
+    <script src="../js/jquery-3.7.0.min.js"></script>
+    <title>Interfaz Imagenes</title>
+</head>
+<body>
+    <div class="position-absolute p-3 campoAlertas col-sm-12 col-md-6 col-lg-3">
+        <div class="container-fluid d-none" id="alerta">
+            <div class="row">
+                <div class="col-12 alert alert-warning" role="alert">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12">
+                            <strong class="text-danger d-flex justify-content-center">
+                            </strong>
+                        </div>
+                        <div class="col-12">
+                                <p class="my-3 text-dark text-capitalize text-center" id="textoAlerta">
+
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid d-none" id="alerta2">
+            <div class="row">
+                <div class="col-12 alert alert-danger" role="alert">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12">
+                            <strong class="text-danger d-flex justify-content-center">
+                                ERROR
+                            </strong>
+                        </div>
+                        <div class="col-12">
+                                <p class="my-3 text-dark text-capitalize text-center" id="textoAlerta2">
+
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid d-none" id="alerta3">
+            <div class="row">
+                <div class="col-12 alert alert-success" role="alert">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12">
+                            <strong class="text-success d-flex justify-content-center">
+                                ¡EXCELENTE!
+                            </strong>
+                        </div>
+                        <div class="col-12">
+                                <p class="my-3 text-dark text-capitalize text-center" id="textoAlerta3">
+
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contenedor-modal" id="contenedor-modal-agregar">
+        <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bordeRedondeado">
+                    <div class="modal-header bg-info bordeSuperiorRedondeado">
+                        <h5 class="modal-title text-capitalize" id="modalLabel">
+                            Confirmación
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <h5 id="confirmacion" class="text-capitalize">el valor del dolar que desea insertar es de <span><strong id="modalDolar"></strong></span> y el valor del peso que desea insertar es de <span><strong id="modalPesos"></strong></span>.</h5>
+                            </div>
+                        </div>
+                        <form>
+                            <div>
+                                <label for="clave" class="form-label text-capitalize">
+                                    ingrese su clave:
+                                </label>
+                                <input class="form-control casilla casilla" type="password" id="clave" required>
+                            </div>      
+                        </form>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" id="aceptarClave" disabled>subir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid p-0 m-0">
+        <div class="cabeza" id="cabeza">
+            <div class="img-interfaz text-center">
+            </div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-info sticky-top">
+                <div class="container-fluid">
+                    <a href="listar_paginaPrincipal.html">
+                        <img src="../imagenes/logohorizontal.png" alt="Ingieneria Digital" class="img-navbar ms-5">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="menu">
+                        <ul class="navbar-nav ms-auto text-capitalize">
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="cuerpo" id="cuerpo">
+            <div class="row m-5 d-flex justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-6 body-personal HSA bordeRedondeado">
+                    <form class="">
+                        <div class="row my-3 d-flex justify-content-center">
+                            <div class="col-sm-12 col-md-4 col-lg-3 d-flex justify-content-md-end justify-content-lg-end justify-content-start">
+                                <label for="dolar" class="col-form-label text-capitalize">
+                                    tasa del dolar:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control casilla validarInsertTasa invalidInsert" id="usd_cam" required>
+                                <span></span>
+                            </div>
+                            <div class="col-sm-12 col-md-4 col-lg-3 d-flex justify-content-md-end justify-content-lg-end justify-content-start">
+                                <label for="peso" class="col-form-label text-capitalize">
+                                    tasa del peso:
+                                </label>
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control casilla validarInsertTasa invalidInsert" id="cop_cam" required>
+                                <span></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="pies" id="pies">
+            <div class="row m-5 d-flex justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-8 body-personal d-flex justify-content-center">
+                    <button role="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAgregar" data-bs-whatever='agregarTasa' id="agregarTasa" disabled>Agregar Tasa</button>
+                </div>
+            </div>
+        </div>
+			
+	</div>     
+    <script src="../js/js-bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../js/tooltip.js"></script>
+    <script src="../js/validar_insertTasa.js"></script>
+    <script src="../js/validar_clave.js"></script>
+</body>
+</html>
