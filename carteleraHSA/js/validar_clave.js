@@ -20,12 +20,8 @@ inputClave.addEventListener('change',()=>{
             responsable='pedro';
             btnValidar.disabled=false;
             break;
-        case 'informacion123':
-            responsable='informacion';
-            btnValidar.disabled=false;
-            break;
-        case 'hermana123':
-            responsable='hermana';
+        case '1980':
+            responsable='lorenzo';
             btnValidar.disabled=false;
             break;
         default:
