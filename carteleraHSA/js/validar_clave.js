@@ -16,7 +16,7 @@ btnAgregar.addEventListener('click',()=>{
 inputClave.addEventListener('change',()=>{
     claveIngresada=inputClave.value;
     switch (claveIngresada) {
-        case 'pedro123':
+        case '12903127':
             responsable='pedro';
             btnValidar.disabled=false;
             break;
