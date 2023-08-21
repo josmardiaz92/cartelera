@@ -1,6 +1,23 @@
 const identificador=document.getElementById('identificador').value;
 const rutaImagenes=`../php/${identificador}.php`;
 const modal = document.getElementById('modal');
+let filtro='';
+const btnFiltro=document.getElementById('filtro');
+          btnFiltro.addEventListener('change',()=>{
+            let valorFiltro=btnFiltro.value;
+            switch(valorFiltro){
+              case 'true':
+                filtro=true;
+              break;
+              case 'false':
+                filtro=false;
+              break;
+              default:
+                filtro='';
+              break;
+            }
+            consultarImagenes();
+          })
 
 
 modal.addEventListener('show.bs.modal', function (event) {
@@ -31,7 +48,10 @@ async function consultarImagenes(){
               status=''
               break;
           }
-          cuerpoTabla.innerHTML+=`
+          switch(filtro){
+            case true:
+              if(status){
+                cuerpoTabla.innerHTML+=`
                                   <tr id="linea${index}">
                                       <td id="${element.url_mul}">${element.url_mul}</td>
                                       <td class="${element.ext_mul}">${element.ext_mul}</td>
@@ -47,11 +67,66 @@ async function consultarImagenes(){
                                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal" data-bs-whatever=${element.cod_mul}><i class="fa-solid fa-eye" style="color: #001A6F" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver"></i></button>
                                       </td>
                                   </tr>`;
-          setTimeout(() => {
-            const estadoImagen=document.getElementById(element.cod_mul);
-            estadoImagen.checked=status;
-            estadoImagen.value=status;
-          }, 100);
+              }
+              if(filtro===status){
+                setTimeout(() => {
+                  const estadoImagen=document.getElementById(element.cod_mul);
+                  estadoImagen.checked=status;
+                  estadoImagen.value=status;
+                }, 100);
+              }
+            break;
+            case false:
+              if(!status){
+                cuerpoTabla.innerHTML+=`
+                                  <tr id="linea${index}">
+                                      <td id="${element.url_mul}">${element.url_mul}</td>
+                                      <td class="${element.ext_mul}">${element.ext_mul}</td>
+                                      <td id="contenedorImg${index}">
+                                          <img src="../imagenes/${element.url_mul}.${element.ext_mul}" alt="" srcset="" class="muestra img-fluid" id="imagen${index}">
+                                      </td>
+                                      <td class="${element.est_mul}">
+                                        <div class="form-check form-switch d-flex justify-content-center">
+                                          <input class="form-check-input estadoImagen" type="checkbox" role="switch" id="${element.cod_mul}">
+                                        </div>
+                                      </td>
+                                      <td id="ver${index}">
+                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal" data-bs-whatever=${element.cod_mul}><i class="fa-solid fa-eye" style="color: #001A6F" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver"></i></button>
+                                      </td>
+                                  </tr>`;
+              }
+              if(filtro===status){
+                setTimeout(() => {
+                  const estadoImagen=document.getElementById(element.cod_mul);
+                  estadoImagen.checked=status;
+                  estadoImagen.value=status;
+                }, 100);
+              }
+            break;
+            default:
+              cuerpoTabla.innerHTML+=`
+                                  <tr id="linea${index}">
+                                      <td id="${element.url_mul}">${element.url_mul}</td>
+                                      <td class="${element.ext_mul}">${element.ext_mul}</td>
+                                      <td id="contenedorImg${index}">
+                                          <img src="../imagenes/${element.url_mul}.${element.ext_mul}" alt="" srcset="" class="muestra img-fluid" id="imagen${index}">
+                                      </td>
+                                      <td class="${element.est_mul}">
+                                        <div class="form-check form-switch d-flex justify-content-center">
+                                          <input class="form-check-input estadoImagen" type="checkbox" role="switch" id="${element.cod_mul}">
+                                        </div>
+                                      </td>
+                                      <td id="ver${index}">
+                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal" data-bs-whatever=${element.cod_mul}><i class="fa-solid fa-eye" style="color: #001A6F" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver"></i></button>
+                                      </td>
+                                  </tr>`;
+              setTimeout(() => {
+                const estadoImagen=document.getElementById(element.cod_mul);
+                estadoImagen.checked=status;
+                estadoImagen.value=status;
+              }, 100);
+            break;
+          }
           })
 
     })
@@ -228,4 +303,4 @@ consultarImagenes();
 
 setTimeout(() => {
   imagenOnOff()
-}, 2000);
+}, 2500);
