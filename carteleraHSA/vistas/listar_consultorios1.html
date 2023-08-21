@@ -10,7 +10,7 @@
     <script src="../js/jquery-3.7.0.min.js"></script>
     <title>Interfaz Imagenes</title>
 </head>
-<body>
+<body style="height: 2000px;">
     <input type="text" value="listarCon1" class="d-none" id="identificador">
     <div class="position-absolute p-3 campoAlertas col-sm-12 col-md-6 col-lg-3">
         <div class="container-fluid d-none" id="alerta">
@@ -291,8 +291,12 @@
                     <a role="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAgregar" data-bs-whatever='agregarImagen'>Agregar Archivo</a>
                     </a>
                 </div>
+                <div class="fixed-bottom d-flex justify-content-end mb-3">
+                    <button type="button" id="recargar" class="border-0 bg-transparent"><i class="fa-solid fa-spinner"></i></button>
+                </div>
             </div>
         </div>
+        
 			
 	</div>     
     <script src="../js/js-bootstrap/bootstrap.bundle.min.js"></script>
@@ -301,5 +305,7 @@
     <script src="../js/insertar_imagen.js"></script>
     <script src="../js/validar_insert.js"></script>
     <script src="../js/validar_update.js"></script>
+    <script src="../js/pedirRecarga.js"></script>
+    
 </body>
 </html>
