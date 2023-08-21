@@ -16,16 +16,16 @@ async function consultarImagenes(){
     fetch(rutaImagenes)
     .then(respuesta=>respuesta.json())
     .then(arregloJsonImagenes=>{
-      let status='';
-      /* cuerpoTabla.innerHTML=''; */
+      cuerpoTabla.innerHTML='';
         arregloJsonImagenes.forEach((element,index)=>{
+          let status='';
           //*Aca se le da un valor visible al status
           switch (element.est_mul) {
             case 'A':
-              status='Activo';              
+              status=true;              
               break;
             case 'I':
-              status='Inactivo';              
+              status=false;              
               break;
             default:
               status=''
@@ -38,11 +38,20 @@ async function consultarImagenes(){
                                       <td id="contenedorImg${index}">
                                           <img src="../imagenes/${element.url_mul}.${element.ext_mul}" alt="" srcset="" class="muestra img-fluid" id="imagen${index}">
                                       </td>
-                                      <td class="${element.est_mul}">${status}</td>
+                                      <td class="${element.est_mul}">
+                                        <div class="form-check form-switch d-flex justify-content-center">
+                                          <input class="form-check-input estadoImagen" type="checkbox" role="switch" id="${element.cod_mul}">
+                                        </div>
+                                      </td>
                                       <td id="ver${index}">
                                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal" data-bs-whatever=${element.cod_mul}><i class="fa-solid fa-eye" style="color: #001A6F" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver"></i></button>
                                       </td>
-                                  </tr>`
+                                  </tr>`;
+          setTimeout(() => {
+            const estadoImagen=document.getElementById(element.cod_mul);
+            estadoImagen.checked=status;
+            estadoImagen.value=status;
+          }, 100);
           })
 
     })
@@ -72,7 +81,7 @@ function editarImagen(ubi,are,dur,est,fil,cod,rut){
   .then(data => {
     if (data.success) {
       alert('Actualizacion exitosa.');
-      location.reload();
+      consultarImagenes();
       
     } else {
       alert('Error al actualizar');
@@ -181,6 +190,42 @@ async function consultarUna(codigo){
   .catch(error=>{console.error(`Atención ${error}`)})
 }
 
-
+function imagenOnOff(){
+  const estadoImagen=document.querySelectorAll('.estadoImagen');
+  estadoImagen.forEach(imagen=>{
+    imagen.addEventListener('change',evento=>{
+      const campo=evento.target;
+      const id=campo.id;
+      let newEstatus='';
+      if(campo.checked){
+        newEstatus='A';
+        console.log(newEstatus);
+      }else{
+        newEstatus='I';
+        console.log(newEstatus);
+      }
+      const formData=new FormData();
+      formData.append("estatus",newEstatus);
+      formData.append("codigo",id);
+      fetch("../php/cambiarStatus.php",{
+        method: "POST",
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('cambio realizado');
+            }
+        })
+        .catch(error => {
+            console.error("Hubo un error al hacer el cambio: ", error);
+        });
+      })
+  })
+}
 
 consultarImagenes();
+
+setTimeout(() => {
+  imagenOnOff()
+}, 2000);
