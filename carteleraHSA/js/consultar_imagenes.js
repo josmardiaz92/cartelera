@@ -22,7 +22,7 @@ const btnFiltro=document.getElementById('filtro');
 
 modal.addEventListener('show.bs.modal', function (event) {
   // Botón que activó el modal
-    var button = event.relatedTarget
+    var button = event.relatedTarget;
     // Extraer información de los atributos data-bs-*
     var codigoMul = button.getAttribute('data-bs-whatever');
     consultarUna(codigoMul);
